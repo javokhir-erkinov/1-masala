@@ -1,0 +1,29 @@
+name: Tekshiruv
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  testlar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Kutubxonalar
+        run: pip install -e .[test,modflow]
+      - name: Testlar
+        run: python -m pytest testlar -q
+      - name: MODFLOW 6 ni o'rnatish
+        run: |
+          mkdir -p $HOME/.local/bin
+          get-modflow $HOME/.local/bin --subset mf6
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: MODFLOW 6 bilan solishtirish
+        run: python tajribalar/t3_modflow.py mf6
+      - uses: actions/upload-artifact@v4
+        with:
+          name: natijalar
+          path: natijalar/
