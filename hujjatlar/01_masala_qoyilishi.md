@@ -248,3 +248,18 @@ Har bir holatda balans qoldig'i ≤ 3·10⁻¹² (nisbiy), Pikar iteratsiyalari 
 | 3 | 3·10⁻¹⁰ | 0,33% | 0,33% |
 
 Ikki dastur bir xil to'r va vaqt qadamlarida mashina aniqligigacha (10⁻⁹ m) mos keladi, chunki diskret tenglamalar bir xil. Etalondan farq ikkalasida bir xil va vaqt bo'yicha birinchi tartibli xatodan kelib chiqadi (1-tajriba). Farq shundaki, masala1 da ajratuvchi noma'lumlari ustun bo'yicha progonka bilan yo'qotiladi va siyrak tizim faqat suvli qatlamlar uchun yechiladi (3 qatlam o'rniga 43 qatlam emas).
+
+## 11. Qalin gilli ajratuvchilar
+
+`tajribalar/t6_qalin_ajratuvchi.py`, rasm `tajribalar/t6_qalin_ajratuvchi.png`. 5-tajribadagi soha va quduqlar; ajratuvchilar b′ = 15 va 20 m, K′ = 10⁻⁴ va 5·10⁻⁵ m/sut (oyna va x bo'yicha o'zgarish saqlangan), S′_s = 4·10⁻⁴ 1/m; t_c = 900 va 3200 sut, ya'ni hisob vaqti (365 sut) t_c dan kichik. Infiltratsiya o'zgarmas, shuning uchun o'zgarishlar faqat quduqlardan.
+
+| Nuqta | 365 sutkada pasayish (sig'imli), m | 365 sutkada pasayish (sig'imsiz), m | Butun davrdagi eng katta nisbiy farq |
+|---|---|---|---|
+| 2-qatlam, quduq yonida | 7,237 | 7,260 | 18% |
+| 2-qatlam, markaz | 5,416 | 5,442 | 30% |
+| 1-qatlam (bosimsiz), markaz | 0,051 | 0,060 | 14% (365 sutkada) |
+| 3-qatlam, quduq yonida | 2,297 | 2,302 | 1.2% |
+
+Quduq suvining manbalari (sig'imli model, rasmning b qismi): birinchi soatlarda suv asosan suvli qatlamlar zaxirasidan olinadi. Taxminan 1 sutkada ajratuvchilar zaxirasining ulushi 26% ga yetadi, keyin kamayadi. 365 sutkada suv asosan chegaralar orqali keladi, bug'lanish ham kamayadi. Butun davrda ajratuvchilardan olingan suv 2.9% ni tashkil etadi. Balans qoldig'i ≤ 4e-12.
+
+Xulosa: berilgan napor chegaralari yaqin bo'lgan bu sohada sig'im quduqli qatlamda birinchi kunlardagi napor pasayishini 18–30% ga sekinlashtiradi. 365 sutkada farq 0,5% dan kam. Bosimsiz qatlamda esa sig'im ta'siri bir yildan keyin ham saqlanadi: napor pasayishi 14% kam. Demak sig'imsiz model yuqori qatlamdagi sath pasayishini oshirib baholaydi. Bu esa bug'lanish va sho'rlanish masalalari uchun muhim.
