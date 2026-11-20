@@ -1,0 +1,62 @@
+{
+ "sigimli_geterogen": {
+  "jamlanma_m3": {
+   "dV_qatlam": -31849.319924319057,
+   "dV_ajratuvchi": -7479.095777950109,
+   "W": 426367.9808906858,
+   "E": 44284.18059601047,
+   "Q": 1168000.0,
+   "chegara": 746587.7840035781
+  },
+  "balans_nisbiy_max": 2.206642533214745e-12,
+  "pikar_max": 4,
+  "pasayish_2qatlam_max_m": 10.541176530034992,
+  "pasayish_1qatlam_max_m": 0.6748040191747169,
+  "quduq_suvi_ajratuvchidan_ulush": 0.006403335426327148
+ },
+ "sigimli_birjinsli": {
+  "jamlanma_m3": {
+   "dV_qatlam": 8509.652849393156,
+   "dV_ajratuvchi": -7338.904207441021,
+   "W": 426367.9808906858,
+   "E": 48149.94463147433,
+   "Q": 1168000.0,
+   "chegara": 790952.7123818848
+  },
+  "balans_nisbiy_max": 2.9362142011080263e-12,
+  "pikar_max": 4,
+  "pasayish_2qatlam_max_m": 5.64724415985488,
+  "pasayish_1qatlam_max_m": 0.05239189172426251,
+  "quduq_suvi_ajratuvchidan_ulush": 0.006283308396781696
+ },
+ "sigimsiz_geterogen": {
+  "jamlanma_m3": {
+   "dV_qatlam": -32341.404276507725,
+   "dV_ajratuvchi": 0.0,
+   "W": 426367.9808906858,
+   "E": 43914.344640907075,
+   "Q": 1168000.0,
+   "chegara": 753204.9594745601
+  },
+  "balans_nisbiy_max": 8.73866272939115e-13,
+  "pikar_max": 4,
+  "pasayish_2qatlam_max_m": 10.538421982824607,
+  "pasayish_1qatlam_max_m": 0.6775340580930571,
+  "quduq_suvi_ajratuvchidan_ulush": -0.0
+ },
+ "sigimsiz_birjinsli": {
+  "jamlanma_m3": {
+   "dV_qatlam": 8089.624152224937,
+   "dV_ajratuvchi": 0.0,
+   "W": 426367.9808906858,
+   "E": 47733.921316171974,
+   "Q": 1168000.0,
+   "chegara": 797455.5645754928
+  },
+  "balans_nisbiy_max": 1.167418731946866e-12,
+  "pikar_max": 4,
+  "pasayish_2qatlam_max_m": 5.6440069421788355,
+  "pasayish_1qatlam_max_m": 0.05608131514774328,
+  "quduq_suvi_ajratuvchidan_ulush": -0.0
+ }
+}
