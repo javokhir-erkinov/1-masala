@@ -7,7 +7,7 @@ Javokhir Erkinov¹*, Normakhmad Ravshanov²
 
 \* Corresponding author: erkinovj110@gmail.com
 
-Draft v0.1, 20 November 2026. Numbers come from the scripts in the repository `1-masala` (branch `claude/project-thread-15xs9v`), each table names its script. References marked [DOI?] still have to be checked against Crossref before submission.
+Draft v0.1, 20 November 2026. Numbers come from the scripts in the repository `1-masala` (branch `claude/project-thread-15xs9v`), each table names its script. DOIs were checked against Crossref on 20 November 2026.
 
 ## Abstract
 
@@ -21,11 +21,33 @@ Numerical experiments show that the time scale t_c = b′S′/K′ alone does no
 
 Keywords: multilayer aquifer; aquitard storage; leaky aquifer; finite volume; unconditional stability; unconfined aquifer
 
+## Nomenclature
+
+| Symbol | Meaning | Unit |
+|---|---|---|
+| h_k | head in aquifer k | m |
+| u_j | head in aquitard j | m |
+| K_k, T_k | hydraulic conductivity and transmissivity of aquifer k | m/d, m²/d |
+| b_k | thickness of confined aquifer k | m |
+| S_k, μ | storage coefficient of aquifer k, specific yield of aquifer 1 | – |
+| K′_j, b′_j | vertical conductivity and thickness of aquitard j | m/d, m |
+| S′_{s,j}, S′_j | specific storage and storage coefficient (S′_s b′) of aquitard j | 1/m, – |
+| c | hydraulic resistance b′/K′ | d |
+| q⁺_j, q⁻_j | flux through the top and bottom face of aquitard j, positive downward | m/d |
+| W, E | recharge and evaporation rate | m/d |
+| E₀, Δ, n | evaporation at the surface, extinction depth, exponent | m/d, m, – |
+| z₀, z_s | base of aquifer 1, ground surface | m |
+| Q | well discharge, positive for extraction | m³/d |
+| t_c | aquitard time scale b′²S′_s/K′ | d |
+| ε | storage ratio S′/ΣS_k | – |
+| τ, δ, M | time step, aquitard sublayer thickness, number of sublayers | d, m, – |
+| C_PQ, A_P | face conductance, cell area | m²/d, m² |
+
 ## 1. Introduction
 
 Irrigated plains of Central Asia overlie sequences of sandy aquifers separated by clay and loam layers. Pumping from a deeper aquifer lowers the water table in the shallow unconfined aquifer through the separating layers. This, in turn, changes evaporation from the water table and the salt balance of the root zone. Predicting the shallow response requires a model that couples the aquifers through the aquitards in a physically consistent way.
 
-The school of N. Ravshanov has developed a sequence of quasi-three-dimensional models for such systems. Ravshanov et al. (2026a) solved three heterogeneous aquifers coupled through two aquitards with an ADI scheme, harmonic face averaging and a mass-conserving exchange term, together with particle transport and clogging. Ravshanov et al. (2026b) treated a four-layer system with head-dependent conductivity. Mukhamadiyev and Karimov (2025, 2026) added an unconfined top layer, variable transmissivity, evaporation and a low-permeability layer with elastic storage. In their model, however, the storage layer lies at the bottom of the sequence and its base is impermeable, so it does not connect two aquifers. Qodirov (2024) derived analytical solutions for three homogeneous aquifers with storage in the aquitards. In all of these numerical models the aquitards between aquifers carry no storage. None of them gives a stability proof for the coupled scheme.
+The school of N. Ravshanov has developed a sequence of quasi-three-dimensional models for such systems. Ravshanov et al. (2026a) solved three heterogeneous aquifers coupled through two aquitards with an ADI scheme, harmonic face averaging and a mass-conserving exchange term, together with particle transport and clogging. Ravshanov et al. (2026b) treated a four-layer system with head-dependent conductivity. Karimov et al. (2025) and Mukhamadiyev et al. (2026) describe one three-layer model with an unconfined top layer, variable transmissivity, evaporation and a low-permeability layer with elastic storage. In that model, however, the storage layer lies at the bottom of the sequence and its base is impermeable, so it does not connect two aquifers. Qodirov (2024) derived analytical solutions for three homogeneous aquifers with storage in the aquitards. In all of these numerical models the aquitards between aquifers carry no storage. None of them gives a stability proof for the coupled scheme.
 
 Outside this school, aquitard storage has a long history. Hantush (1960) and Neuman and Witherspoon (1969) showed that the release of water from aquitard storage changes early-time drawdown. Hemker (1985) and Hemker and Maas (1987) solved the n-layer problem with storage in all aquitards in the Laplace domain. Cihan et al. (2011) extended this to many aquifers with leaky wells. Herrera and Yates (1977) wrote the aquitard response as a memory integral. In MODFLOW, aquitard storage is available through the TLK1 package (Leake et al. 1994) and through delay interbeds in the CSUB package (Hughes et al. 2022). An aquitard can also be represented as several thin model layers. Hence aquitard storage itself is not new.
 
@@ -186,7 +208,7 @@ The scheme is therefore monotone for any τ. In particular, it produces no oscil
 
 ### Convergence
 
-The local truncation error is O(τ + h² + δ²) for smooth solutions. Together with Theorem 1, this gives convergence of the same order in the D-norm for the linear problem. On non-uniform grids, the cell-centred scheme is known to keep second-order global accuracy despite first-order local truncation (Forsyth and Sammon 1988 [DOI?]). We check the orders numerically in Section 5.
+The local truncation error is O(τ + h² + δ²) for smooth solutions. Together with Theorem 1, this gives convergence of the same order in the D-norm for the linear problem. On non-uniform grids, the cell-centred scheme is known to keep second-order global accuracy despite first-order local truncation (Forsyth and Sammon 1988). We check the orders numerically in Section 5.
 
 ## 5. Verification
 
@@ -204,7 +226,7 @@ The test problem is T = 200, 100, 300 m²/d; S = 2, 1, 3 ×10⁻⁴; K′ = 2×1
 
 ### Comparison with MODFLOW 6
 
-The same problem was built in MODFLOW 6 (Langevin et al. 2017 [DOI?]) with each aquitard as 20 model layers (K33 = K′, SS = S′_s) and K33 = 10⁶ m/d in the aquifers: 43 layers in all, with identical time steps. Heads at nine observation points agree with our code to at most 4×10⁻⁹ m. Both codes differ from the Laplace reference by the same amount. The two codes solve the same discrete equations. Ours does it with a sparse system over 3 rather than 43 layers, plus independent tridiagonal solves.
+The same problem was built in MODFLOW 6 (Langevin et al. 2017) with each aquitard as 20 model layers (K33 = K′, SS = S′_s) and K33 = 10⁶ m/d in the aquifers: 43 layers in all, with identical time steps. Heads at nine observation points agree with our code to at most 4×10⁻⁹ m. Both codes differ from the Laplace reference by the same amount. The two codes solve the same discrete equations. Ours does it with a sparse system over 3 rather than 43 layers, plus independent tridiagonal solves.
 
 ### Convergence in the aquitard and mass balance
 
@@ -258,10 +280,7 @@ With thin aquitards (t_c = 11 and 32 d), heterogeneity doubles the maximum drawd
 
 With thick clay aquitards (b′ = 15 and 20 m, K′ = 10⁻⁴ and 5×10⁻⁵ m/d, S′_s = 4×10⁻⁴ m⁻¹), t_c = 900 and 3200 d, longer than the simulated year. Recharge is held constant so that all changes come from pumping (Fig. 3).
 
-- Storage slows the early drawdown in aquifer 2 by 18–30%. After one year the difference is below 0.5%, because the prescribed-head boundaries then supply most of the water.
-- Near t = 1 d the aquitards provide 26% of the pumped water.
-- After one year the water-table decline in the unconfined aquifer is 0.051 m with storage and 0.060 m without, 14% less.
-- The balance residual stays below 4×10⁻¹², and Picard needs at most 4 iterations per step.
+Storage slows the early drawdown in aquifer 2 by 18–30%. Near t = 1 d the aquitards supply 26% of the pumped water. Later the prescribed-head boundaries take over, and after one year the difference in the pumped aquifer is below 0.5%. The unconfined aquifer behaves differently: after one year its water table has declined by 0.051 m with storage and by 0.060 m without, a difference of 14% that is still present at the end of the run. The balance residual stays below 4×10⁻¹² and Picard needs at most 4 iterations per step.
 
 ## 7. Discussion
 
@@ -269,14 +288,7 @@ The results support a simple practical message. A storage-free aquitard model is
 
 The condensation of the aquitard columns is equivalent to the layered representation used in MODFLOW. The results agree to round-off, but our system matrix has the size of the aquifer problem only. Lemma 2 shows that this elimination preserves the M-matrix structure. Therefore positivity and stability are inherited by the condensed system rather than merely observed in tests.
 
-Limitations:
-
-1. Aquifers 2 and 3 are assumed to stay confined.
-2. Wells are screened in a single aquifer.
-3. Aquitard flow is purely vertical.
-4. The time discretisation is first order; a second-order variant (BDF2) would keep the M-matrix property only under a step restriction.
-5. Picard convergence is monitored, not proved.
-6. Field validation is limited to one classical pumping test, which cannot resolve aquitard storage. A test with piezometers inside the aquitard would be needed.
+The model has limits that a user should know. Aquifers 2 and 3 are assumed to stay confined, and each well is screened in one aquifer. Flow in the aquitards is vertical only; the MLU example of Section 5 suggests that horizontal flow inside an aquitard matters little for drawdown in the aquifers, but we have not tested this for strongly heterogeneous aquitards. The time discretisation is first order. A second-order variant such as BDF2 would lose the M-matrix property unless the step is restricted, so we kept backward Euler and control the error by step growth. Convergence of the Picard iteration is monitored in every step, not proved. Field validation rests on one classical pumping test, and that test cannot resolve aquitard storage. A test with piezometers inside the aquitard, as at Dalem, is needed for that purpose.
 
 ## 8. Conclusions
 
@@ -287,6 +299,10 @@ Limitations:
 5. In a heterogeneous field with thick clay aquitards, the storage-free model overestimates the water-table decline in the unconfined aquifer by about 14% after one year.
 
 Future work: coupling with salt transport through the aquitards (problem 2 of the dissertation), and calibration against a site with aquitard piezometers.
+
+## Declaration of generative AI use
+
+Claude (Anthropic) was used to help write and test the program code, to prepare figures and to edit the language of the manuscript. All equations, proofs, numerical results and references were checked by the authors, who take full responsibility for the content. [wording to be adapted to the journal's policy]
 
 ## Data and code availability
 
@@ -302,25 +318,27 @@ J. Erkinov: conceptualisation, model, numerical method, proofs, software, verifi
 
 ## References
 
-[All entries to be checked against Crossref; [DOI?] marks entries not yet verified in this project.]
+DOIs checked against Crossref on 20 November 2026, except where marked.
 
-- Cihan A., Zhou Q., Birkholzer J.T. (2011). Analytical solutions for pressure perturbation and fluid leakage through aquitards and wells in multilayered-aquifer systems. Water Resources Research 47, W10504. https://doi.org/10.1029/2011WR010721
-- Forsyth P.A., Sammon P.H. (1988). Quadratic convergence for cell-centered grids. Applied Numerical Mathematics 4, 377–394. [DOI?]
-- Hantush M.S. (1960). Modification of the theory of leaky aquifers. Journal of Geophysical Research 65(11), 3713–3725. [DOI?]
-- Hantush M.S., Jacob C.E. (1955). Non-steady radial flow in an infinite leaky aquifer. Transactions AGU 36(1), 95–100. [DOI?]
-- Hemker C.J. (1985). Transient well flow in leaky multiple-aquifer systems. Journal of Hydrology 81, 111–126. [DOI?]
-- Hemker C.J., Maas C. (1987). Unsteady flow to wells in layered and fissured aquifer systems. Journal of Hydrology 90, 231–249. [DOI?]
-- Herrera I., Figueroa G.E. (1969). A correspondence principle for the theory of leaky aquifers. Water Resources Research 5(4), 900–904. [DOI?]
-- Herrera I., Yates R. (1977). Integrodifferential equations for systems of leaky aquifers and applications. 3. A numerical method of unlimited applicability. Water Resources Research 13(4), 725–732. https://doi.org/10.1029/WR013i004p00725
-- Hughes J.D., Leake S.A., Galloway D.L., White J.T. (2022). Documentation for the Skeletal Storage, Compaction, and Subsidence (CSUB) Package of MODFLOW 6. USGS Techniques and Methods 6-A62. https://doi.org/10.3133/tm6A62
-- Kruseman G.P., de Ridder N.A. (1990). Analysis and Evaluation of Pumping Test Data, 2nd ed. ILRI Publication 47, Wageningen.
-- Langevin C.D. et al. (2017). Documentation for the MODFLOW 6 Groundwater Flow Model. USGS Techniques and Methods 6-A55. [DOI?]
-- Leake S.A., Leahy P.P., Navoy A.S. (1994). Documentation of a computer program to simulate transient leakage from confining units using the modular finite-difference ground-water flow model. USGS Open-File Report 94-59. https://doi.org/10.3133/ofr9459
-- Mukhamadiyev A., Karimov M. et al. (2025). Proc. SPIE 13662, 136620J. https://doi.org/10.1117/12.3072569 [title to be copied]
-- Mukhamadiyev A., Karimov M. et al. (2026). Mathematics 14, 256. [DOI?]
-- Neuman S.P., Witherspoon P.A. (1969). Theory of flow in a confined two aquifer system. Water Resources Research 5(4), 803–816. [DOI?]
-- Qodirov K.R. (2024). PhD dissertation (abstract), Tashkent. [published articles to be cited instead, per project rule]
-- Ravshanov N., Shadmanov I. et al. (2026a). Quasi-3D numerical modeling of groundwater flow, particle transport, and clogging-induced interlayer leakage in heterogeneous multilayer aquifers. Hydrology 13, 276. https://doi.org/10.3390/hydrology13100276
-- Ravshanov N., Shadmanova K., Shadmanov I. (2026b). Hydrology 13, 181. https://doi.org/10.3390/hydrology13070181
-- Stehfest H. (1970). Algorithm 368: Numerical inversion of Laplace transforms. Communications of the ACM 13(1), 47–49. [DOI?]
-- Theis C.V. (1935). The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using ground-water storage. Transactions AGU 16(2), 519–524. [DOI?]
+- Cihan A., Zhou Q., Birkholzer J.T. (2011). Analytical solutions for pressure perturbation and fluid leakage through aquitards and wells in multilayered-aquifer systems. Water Resources Research 47, W10504. https://doi.org/10.1029/2011WR010721 [checked earlier in this project via OpenAlex]
+- Forsyth P.A., Sammon P.H. (1988). Quadratic convergence for cell-centered grids. Applied Numerical Mathematics 4(5), 377–394. https://doi.org/10.1016/0168-9274(88)90016-5
+- Hantush M.S. (1960). Modification of the theory of leaky aquifers. Journal of Geophysical Research 65(11), 3713–3725. https://doi.org/10.1029/JZ065i011p03713
+- Hantush M.S., Jacob C.E. (1955). Non-steady radial flow in an infinite leaky aquifer. Transactions, American Geophysical Union 36(1), 95–100. https://doi.org/10.1029/TR036i001p00095 [authors to be confirmed from the printed paper; Crossref record has no authors]
+- Hemker C.J. (1985). Transient well flow in leaky multiple-aquifer systems. Journal of Hydrology 81(1–2), 111–126. https://doi.org/10.1016/0022-1694(85)90170-2
+- Hemker C.J., Maas C. (1987). Unsteady flow to wells in layered and fissured aquifer systems. Journal of Hydrology 90(3–4), 231–249. https://doi.org/10.1016/0022-1694(87)90069-2
+- Hemker C.J., Randall J. (2010). Modeling with MLU: Applying the multilayer approach to aquifer test analysis. Tutorial. [no DOI]
+- Herrera I., Figueroa V. G.E. (1969). A correspondence principle for the theory of leaky aquifers. Water Resources Research 5(4), 900–904. https://doi.org/10.1029/WR005i004p00900
+- Herrera I., Yates R. (1977). Integrodifferential equations for systems of leaky aquifers and applications. 3. A numerical method of unlimited applicability. Water Resources Research 13(4), 725–732. https://doi.org/10.1029/WR013i004p00725 [checked earlier via OpenAlex]
+- Hughes J.D., Leake S.A., Galloway D.L., White J.T. (2022). Documentation for the Skeletal Storage, Compaction, and Subsidence (CSUB) Package of MODFLOW 6. USGS Techniques and Methods 6-A62. https://doi.org/10.3133/tm6A62 [checked on the USGS page]
+- Karimov M., Yakhshiboev M., Rakhimova F., Yadgarova L. (2025). Modeling of groundwater flow in a multilayer porous medium based on a nonlinear mathematical model. Proc. SPIE 13662, 136620J. https://doi.org/10.1117/12.3072569
+- Kruseman G.P., de Ridder N.A. (1990). Analysis and Evaluation of Pumping Test Data, 2nd ed. ILRI Publication 47, Wageningen. [no DOI]
+- Langevin C.D., Hughes J.D., Banta E.R., Niswonger R.G., Panday S., Provost A.M. (2017). Documentation for the MODFLOW 6 Groundwater Flow Model. USGS Techniques and Methods 6-A55. https://doi.org/10.3133/tm6A55
+- Leake S.A., Leahy P.P., Navoy A.S. (1994). Documentation of a computer program to simulate transient leakage from confining units using the modular finite-difference ground-water flow model. USGS Open-File Report 94-59. https://doi.org/10.3133/ofr9459 [checked on the USGS page]
+- Mukhamadiyev A., Karimov M., Khujakulov T., Sattarov O., Cho J. (2026). A nonlinear model of three-layer groundwater flow with evaporation dependent on the critical groundwater level. Mathematics 14(2), 256. https://doi.org/10.3390/math14020256
+- Neuman S.P., Witherspoon P.A. (1969). Theory of flow in a confined two aquifer system. Water Resources Research 5(4), 803–816. https://doi.org/10.1029/WR005i004p00803
+- Olsthoorn T.N. (2003). Matlab function hantushn (column of C. Maas). Stromingen 9(3), 48–50. [no DOI]
+- Qodirov K.R. (2024). PhD dissertation abstract, Tashkent. [replace by the published articles, project rule]
+- Ravshanov N., Shadmanov I., Adizova F., Shadmanova K., Sayidova N., Jurayeva N., Kamalova M. (2026a). Quasi-3D numerical modeling of groundwater flow, particle transport, and clogging-induced interlayer leakage in heterogeneous multilayer aquifers. Hydrology 13, 276. https://doi.org/10.3390/hydrology13100276 [as printed in the paper]
+- Ravshanov N., Shadmanova K., Shadmanov I. (2026b). Hydrology 13, 181. https://doi.org/10.3390/hydrology13070181 [title to be copied; checked earlier via OpenAlex]
+- Stehfest H. (1970). Algorithm 368: Numerical inversion of Laplace transforms. Communications of the ACM 13(1), 47–49. https://doi.org/10.1145/361953.361969
+- Theis C.V. (1935). The relation between the lowering of the piezometric surface and the rate and duration of discharge of a well using ground-water storage. Transactions, American Geophysical Union 16(2), 519–524. https://doi.org/10.1029/TR016i002p00519 [author to be confirmed from the printed paper]
