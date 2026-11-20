@@ -10,6 +10,8 @@ Masala Ravshanov ilmiy maktabining uch qatlamli modellarining davomi.
 |---|---|---|
 | Ravshanov, Shadmanov va boshq., Hydrology 2026, 13, 276 | uch suvli qatlam, ikki ajratuvchi; qatlam ichida K(x,y); massani saqlovchi almashinuv; garmonik o'rtacha; ADI va Pikar | ajratuvchida sig'im; bosimsiz qatlam; quduq; infiltratsiya va bug'lanish; turg'unlik isboti; qatlamlararo almashinuvning analitik tekshiruvi |
 | Mukhamadiyev, Karimov, SPIE 2025 va Mathematics 2026, 14, 256 (bitta model) | bosimsiz yuqori qatlam; T(x,y); bug'lanish; elastik rejimdagi kam o'tkazuvchan qatlam | sig'imli qatlam pastda va tubi suv o'tkazmaydi, ikki suvli qatlam orasida emas; tutashuv sharti to'liq emas; turg'unlik isboti yo'q |
+| Kayumov va boshq., J. Phys.: Conf. Ser. 2024, 2697, 012042 | bitta suvli qatlam (1D, x bo'yicha) va ostidagi kam o'tkazuvchan qatlamda vertikal elastik rejim tenglamasi; 13 ta nochiziqli filtratsiya qonuni | ikkinchi suvli qatlam yo'q, ostki chegara suv o'tkazmaydi; tutashuv sharti (napor uzluksizligi) yozilmagan; K(x,y) yo'q; turg'unlik isboti va tekshiruv yo'q |
+| Aminov S.M., 2023, PhD (neft-gaz) | ikki qatlam va ko'prikda diffuziya tenglamasi | boshqa jarayon (neft-gaz); faqat avtoreferat o'qilgan |
 | Qodirov K.R., 2024, PhD dissertatsiya | uch suvli qatlam; ajratuvchilarda elastik suv zaxirasi; bosimsiz yuqori qatlam; bug'lanish | qatlamlar bir jinsli; yechim analitik |
 
 Xalqaro ishlarda ajratuvchining elastik suv zaxirasi analitik (Neuman, Witherspoon 1969; Hemker 1985; Hemker, Maas 1987; Cihan va boshq. 2011) va MODFLOW paketlarida (TLK1, Leake va boshq. 1994; CSUB, Hughes va boshq. 2022) hisobga olingan. Shuning uchun sig'imli ajratuvchining o'zi yangilik emas.
