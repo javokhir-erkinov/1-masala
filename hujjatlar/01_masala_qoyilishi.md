@@ -187,7 +187,7 @@ Approksimatsiya xatosi silliq yechimda O(τ + h² + δ²). 1-teorema va Laks teo
 | 3 | Ajratuvchi ustuni ↔ aniq qator yechim; δ va τ bo'yicha tartib | bajarildi: 2 va 1 |
 | 4 | Diskret balans (19), murakkab masala | bajarildi: < 10⁻¹⁰ |
 | 5 | Ss → 0 da sig'imsiz modelga o'tish | bajarildi |
-| 6 | MODFLOW 6 (ajratuvchi alohida qatlamlar sifatida) | GitHub Actions orqali |
+| 6 | MODFLOW 6 (ajratuvchi alohida qatlamlar sifatida) | bajarildi (10-bo'lim) |
 | 7 | MLU "Two-aquifers", Veling–Maas misollari | navbatda |
 | 8 | Dalem ma'lumotlari (Kruseman, de Ridder 1990, 4.2-jadval) | bajarildi (8-bo'lim) |
 | 9 | t/t_c bo'yicha sig'imli va sig'imsiz modellar farqi | bajarildi (7-bo'lim) |
@@ -236,3 +236,15 @@ Sig'imli talqin xatoni deyarli kamaytirmaydi, S′ ning ishonch oralig'i keng (l
 | sig'imsiz, bir jinsli | 5,64 | 0,06 | 0 |
 
 Har bir holatda balans qoldig'i ≤ 3·10⁻¹² (nisbiy), Pikar iteratsiyalari ≤ 4. Bu misolda t_c = 10,8 va 32 sut, hisob vaqti esa 365 sut, chegaralarda napor berilgan; shuning uchun sig'imning ta'siri kichik. Geterogenlik esa pasayishni ikki baravar oshiradi va oyna orqali 1-qatlamga o'tadi. Sig'im muhim bo'lgan holatni ko'rsatish uchun keyingi tajribada t ≲ t_c davr (quduqni ishga tushirish, sarfni o'zgartirish) va ε ≳ 1 olinadi.
+
+## 10. MODFLOW 6 bilan solishtirish
+
+`tajribalar/t3_modflow.py`, GitHub Actions (`.github/workflows/tekshiruv.yml`). 1-tajribadagi masala: har bir ajratuvchi MODFLOW da 20 ta qatlam (K33 = K′, SS = S′_s), suvli qatlamlar K33 = 10⁶ m/sut; jami 43 qatlam, 105×105 notekis to'r, 175 vaqt qadami (ko'paytuvchi 1,05), 10 sutka.
+
+| Qatlam | masala1 va MODFLOW 6 orasidagi eng katta farq, m | MODFLOW 6 ning Laplas etalonidan nisbiy farqi | masala1 ning etalondan nisbiy farqi |
+|---|---|---|---|
+| 1 | 4·10⁻¹⁰ | 0,22% | 0,22% |
+| 2 (quduqli) | 4·10⁻⁹ | 0,68–0,74% | 0,68–0,74% |
+| 3 | 3·10⁻¹⁰ | 0,33% | 0,33% |
+
+Ikki dastur bir xil to'r va vaqt qadamlarida mashina aniqligigacha (10⁻⁹ m) mos keladi, chunki diskret tenglamalar bir xil. Etalondan farq ikkalasida bir xil va vaqt bo'yicha birinchi tartibli xatodan kelib chiqadi (1-tajriba). Farq shundaki, masala1 da ajratuvchi noma'lumlari ustun bo'yicha progonka bilan yo'qotiladi va siyrak tizim faqat suvli qatlamlar uchun yechiladi (3 qatlam o'rniga 43 qatlam emas).
