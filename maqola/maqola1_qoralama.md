@@ -48,7 +48,7 @@ The system consists of three aquifers numbered k = 1, 2, 3 from the top and two 
 - (A5) each well is screened in one aquifer;
 - (A6) each medium is locally isotropic, with conductivity varying in x and y.
 
-[Fig. 1: schematic cross-section, to be drawn.]
+Fig. 1. Schematic cross-section of the three-aquifer system (`maqola/rasm1_sxema.png`).
 
 ### Governing equations
 
