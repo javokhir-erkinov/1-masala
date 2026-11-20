@@ -24,12 +24,12 @@ for m in (10.0, 1.0, 0.1, 0.01):
     e[s1 < 0.01 * s1[:, [1]]] = np.nan
     nat["holatlar"].append({"eps": eps, "farq": e.tolist()})
     for a, k in zip(ax, (1, 0)):
-        a.loglog(t / tc, 100 * e[:, k], label=f"ε = {eps:.2g}")
+        a.loglog(t / tc, 100 * e[:, k], label=rf"$\varepsilon$ = {eps:.2g}")
 for a, sar in zip(ax, ("a) quduqli 2-qatlam", "b) 1-qatlam")):
-    a.set_xlabel("t / t_c"); a.set_title(sar, fontsize=10); a.grid(alpha=.3, which="both")
+    a.set_xlabel(r"$t\,/\,t_c$ (o'lchamsiz)"); a.set_title(sar, fontsize=10); a.grid(alpha=.3, which="both")
     a.axhline(5, color="k", lw=.8, ls="--")
     a.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
-ax[0].set_ylabel("|s − s₀| / s, %"); ax[0].legend(fontsize=8)
+ax[0].set_ylabel(r"$|s-s_0|\,/\,s$, %"); ax[0].legend(fontsize=8)
 fig.tight_layout()
 fig.savefig("tajribalar/t2_tc_mezoni.png", dpi=200, metadata={"Software": None})
 json.dump(nat, open("tajribalar/t2_tc_mezoni.json", "w"))
