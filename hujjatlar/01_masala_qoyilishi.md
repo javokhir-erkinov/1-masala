@@ -187,7 +187,7 @@ Approksimatsiya xatosi silliq yechimda O(τ + h² + δ²). 1-teorema va Laks teo
 | 5 | Ss → 0 da sig'imsiz modelga o'tish | bajarildi |
 | 6 | MODFLOW 6 (ajratuvchi alohida qatlamlar sifatida) | GitHub Actions orqali |
 | 7 | MLU "Two-aquifers", Veling–Maas misollari | navbatda |
-| 8 | Dalem ma'lumotlari (Kruseman, de Ridder 1990, 4.2-jadval) | navbatda |
+| 8 | Dalem ma'lumotlari (Kruseman, de Ridder 1990, 4.2-jadval) | bajarildi (8-bo'lim) |
 | 9 | t/t_c bo'yicha sig'imli va sig'imsiz modellar farqi | bajarildi (7-bo'lim) |
 
 ## 7. Dastlabki natija: t_c mezoni yetarli emas
@@ -209,3 +209,28 @@ Xulosa:
 4. Qo'shni qatlamlarda farq ancha katta (1-qatlamda ε = 0,83 da t = 10³t_c da ham 10%).
 
 Neuman, Witherspoon (1969) va Hantush (1960) da ham sig'im nisbati S′/S parametr sifatida qatnashadi; bu natija ularga zid emas. Maqolada uni K(x,y) va bosimsiz qatlam bo'lgan holatda sonli model bilan tekshirish kerak.
+
+## 8. Dalem ma'lumotlari
+
+`tajribalar/t4_dalem.py`, `malumotlar/dalem.csv` (Kruseman, de Ridder 1990, 4.2-jadval, 84-bet; Q = 761 m³/sut, to'rt pyezometr 30, 60, 90, 120 m). Ustki qatlam napori o'zgarmas deb olindi; parametrlar eng kichik kvadratlar usuli bilan topildi.
+
+| Talqin | KD, m²/sut | S | c, sut | S′ | RMSE, mm |
+|---|---|---|---|---|---|
+| Kruseman–de Ridder (Walton usuli) | 1731 | 1,9·10⁻³ | 468 | | 6,9 |
+| Sig'imsiz ajratuvchi | 1674 | 1,77·10⁻³ | 325 | | 5,87 |
+| Sig'imli ajratuvchi | 1670 | 1,52·10⁻³ | 370 | 1,1·10⁻³ | 5,80 |
+
+Sig'imli talqin xatoni deyarli kamaytirmaydi, S′ ning ishonch oralig'i keng (lg S′ ning standart chetlanishi 0,41). Kuzatuv 0,015–0,33 sut oralig'ida, t_c ≈ 0,4 sut; ma'lumotlar sig'imni aniqlash uchun yetarli emas. Bu natija maqolada cheklov sifatida ochiq yoziladi: Dalem tajribasi modelni tekshiradi, lekin sig'im ta'sirini tasdiqlamaydi.
+
+## 9. K(x,y), bosimsiz qatlam, bug'lanish va quduqlar
+
+`tajribalar/t5_geterogen.py`. Soha 2000×1000 m, 80×40 yacheyka; 1-qatlam bosimsiz (K₁ da linza va kanal), 2-qatlamda K₂(x,y), 3-qatlamda ikki zona; 1-ajratuvchida gidrogeologik oyna (K′ 20 marta katta). Infiltratsiya mavsumiy, bug'lanish Averyanov qonuni bo'yicha. 2-qatlamda uchta (800, 800, 600 m³/sut), 3-qatlamda bitta (1000 m³/sut) quduq; boshlang'ich holat quduqlarsiz statsionar holat; 365 sutka.
+
+| Holat | 2-qatlamda eng katta pasayish, m | 1-qatlamda eng katta pasayish, m | Quduq suvining ajratuvchi zaxirasidan ulushi |
+|---|---|---|---|
+| sig'imli, geterogen | 10,54 | 0,67 | 0,64% |
+| sig'imsiz, geterogen | 10,54 | 0,68 | 0 |
+| sig'imli, bir jinsli | 5,65 | 0,05 | 0,63% |
+| sig'imsiz, bir jinsli | 5,64 | 0,06 | 0 |
+
+Har bir holatda balans qoldig'i ≤ 3·10⁻¹² (nisbiy), Pikar iteratsiyalari ≤ 4. Bu misolda t_c = 10,8 va 32 sut, hisob vaqti esa 365 sut, chegaralarda napor berilgan; shuning uchun sig'imning ta'siri kichik. Geterogenlik esa pasayishni ikki baravar oshiradi va oyna orqali 1-qatlamga o'tadi. Sig'im muhim bo'lgan holatni ko'rsatish uchun keyingi tajribada t ≲ t_c davr (quduqni ishga tushirish, sarfni o'zgartirish) va ε ≳ 1 olinadi.
