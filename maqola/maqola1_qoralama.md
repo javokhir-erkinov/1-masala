@@ -57,7 +57,7 @@ This paper makes four contributions.
 
 1. A three-aquifer model with a vertical diffusion equation in each aquitard, continuity of head and flux at both aquitard faces, K(x,y) in all units, and an unconfined top aquifer with recharge, Averyanov-type evaporation and wells (Section 2).
 2. A finite-volume scheme in which the aquitard columns are condensed exactly by a tridiagonal solve. We prove exact discrete mass conservation, symmetry and positive semi-definiteness of the condensed exchange, unconditional energy stability and a discrete maximum principle (Sections 3 and 4).
-3. Verification against classical solutions, a Laplace-domain multilayer solution with aquitard storage, MODFLOW 6 and the Dalem pumping test (Section 5).
+3. Verification against classical solutions, a Laplace-domain multilayer solution with aquitard storage, the published examples of Hemker and Maas (1987) and MLU, MODFLOW 6 and the Dalem pumping test (Section 5).
 4. A parametric study showing that the decision to neglect aquitard storage depends on two numbers, t/t_c and ε = S′/ΣS. We also quantify the effect of storage on the water table in a heterogeneous field (Section 6).
 
 ## 2. Mathematical model
@@ -255,7 +255,11 @@ The Dalem test is given in Table 4.2 of Kruseman and de Ridder (1990), after De 
 
 Including storage barely reduces the misfit, and S′ is poorly identified: the standard deviation of log₁₀S′ is 0.41. The test spans 0.015–0.33 d, comparable to the fitted t_c ≈ 0.4 d. The data therefore validate the model but cannot confirm aquitard storage from the drawdown in the aquifer alone. The fitted S′ = 1.1×10⁻³ nevertheless agrees with the value S′ = 1.1×10⁻³ that Kruseman and de Ridder (1990, p. 97–98) derive from the ratio method of Neuman and Witherspoon, which uses an additional piezometer inside the aquitard (D′ = 8 m, K′D′/S′ = 126 m²/d). Their averaged parameters are KD = 1800 m²/d, S = 1.7×10⁻³ and c = 450 d. The measured drawdowns had been corrected for partial penetration and tidal influence before publication; we use them as given.
 
-[MLU "Two-aquifers" and Veling–Maas examples: to be added when parameters arrive.]
+### Published multilayer examples
+
+Olsthoorn (2003) lists drawdowns for two aquifers (kD = 100, S = 10⁻⁴) between three aquitards with storage (c = 100, S′ = 0.0016), with zero drawdown above and below the system, at r = 10 and t = 10⁻⁵–5. The column states that these values equal those of Hemker and Maas (1987). Our Laplace solution, extended with the two outer aquitards, reproduces all 36 tabulated values to the four printed decimals (`testlar/test_masala1.py`). The numerical model, with the outer heads represented by two fixed-head layers and M = 20 sublayers per aquitard, differs from the reference at the nearest grid radius (r = 10.69) by at most 0.25% for t ≥ 10⁻³ (`tajribalar/t7_maas_mlu.py`). Larger differences occur only in the first time steps.
+
+The "Two-aquifers" verification example of the MLU tutorial (Hemker and Randall 2010) is a phreatic layer, a 10 m aquitard and a pumped aquifer (Q = 180 m³/d). There, aquitard storage and horizontal flow are carried by three thin layers, giving six layers in all. Our Laplace solution gives 0.29826 m at r = 5.01 m after 1 min, the MLU value to all printed digits, and 0.0496 m at 15.85 m, where MLU prints 0.050 m. The numerical model applied to the same six-layer system differs from the reference by 0.04% and 0.3% at the two nearest grid radii. The example by Veling and Maas (2009) reports particle paths only and was not used.
 
 ## 6. Results
 

@@ -188,7 +188,7 @@ Approksimatsiya xatosi silliq yechimda O(τ + h² + δ²). 1-teorema va Laks teo
 | 4 | Diskret balans (19), murakkab masala | bajarildi: < 10⁻¹⁰ |
 | 5 | Ss → 0 da sig'imsiz modelga o'tish | bajarildi |
 | 6 | MODFLOW 6 (ajratuvchi alohida qatlamlar sifatida) | bajarildi (10-bo'lim) |
-| 7 | MLU "Two-aquifers", Veling–Maas misollari | navbatda |
+| 7 | Maas–Olsthoorn 2003 (Hemker–Maas 1987) jadvali, MLU "Two-aquifers" | bajarildi (12-bo'lim); Veling–Maas da faqat zarracha trayektoriyalari bor, ishlatilmadi |
 | 8 | Dalem ma'lumotlari (Kruseman, de Ridder 1990, 4.2-jadval) | bajarildi (8-bo'lim) |
 | 9 | t/t_c bo'yicha sig'imli va sig'imsiz modellar farqi | bajarildi (7-bo'lim) |
 
@@ -263,3 +263,11 @@ Ikki dastur bir xil to'r va vaqt qadamlarida mashina aniqligigacha (10⁻⁹ m) 
 Quduq suvining manbalari (sig'imli model, rasmning b qismi): birinchi soatlarda suv asosan suvli qatlamlar zaxirasidan olinadi. Taxminan 1 sutkada ajratuvchilar zaxirasining ulushi 26% ga yetadi, keyin kamayadi. 365 sutkada suv asosan chegaralar orqali keladi, bug'lanish ham kamayadi. Butun davrda ajratuvchilardan olingan suv 2,9% ni tashkil etadi. Balans qoldig'i ≤ 4·10⁻¹².
 
 Xulosa: berilgan napor chegaralari yaqin bo'lgan bu sohada sig'im quduqli qatlamda birinchi kunlardagi napor pasayishini 18–30% ga sekinlashtiradi. 365 sutkada farq 0,5% dan kam. Bosimsiz qatlamda esa sig'im ta'siri bir yildan keyin ham saqlanadi: napor pasayishi 14% kam. Demak sig'imsiz model yuqori qatlamdagi sath pasayishini oshirib baholaydi. Bu esa bug'lanish va sho'rlanish masalalari uchun muhim.
+
+## 12. Maas–Olsthoorn 2003 va MLU "Two-aquifers" misollari
+
+Parametrlar: `/mnt/project-files/maqola1/etalon_parametrlar/etalonlar.md`. Skript: `tajribalar/t7_maas_mlu.py`, testlar: `testlar/test_masala1.py`.
+
+1. Maas–Olsthoorn 2003 (manbada Hemker–Maas 1987 bilan aynan mos deyilgan): ikki suvli qatlam (kD = 100, S = 10⁻⁴), uchta sig'imli ajratuvchi (c = 100, S′ = 0,0016), tizim ustida va ostida pasayish nol, r = 10. Laplas etaloni tashqi ajratuvchilar bilan kengaytirildi va jadvaldagi 36 qiymatning hammasi bilan bosilgan 4 xonagacha mos keldi. Sonli yechim (tashqi naporlar berilgan ikki qo'shimcha qatlam, M = 20) to'rning eng yaqin nuqtasida (r = 10,69) t ≥ 10⁻³ da etalondan ko'pi bilan 0,25% farq qiladi.
+2. MLU "Two-aquifers" (Hemker, Randall 2010; 6 qatlamli tasvir, Q = 180 m³/sut): etalon 1 minutda 5,01 m da 0,29826 m beradi (MLU dagi bilan bir xil), 15,85 m da 0,0496 m beradi (MLU da 0,050). Sonli yechim etalondan 0,04% va 0,3% farq qiladi.
+3. Veling–Maas 2009 da napor yoki pasayish jadvali yo'q, faqat zarracha trayektoriyalari bor, shuning uchun u etalon sifatida ishlatilmadi.
