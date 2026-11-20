@@ -1,8 +1,11 @@
 # A mass-conservative numerical model of groundwater flow in a three-aquifer system with storage in both aquitards, heterogeneous transmissivity and an unconfined top layer
 
-Javokhir Erkinov
+Javokhir Erkinov¹*, Normakhmad Ravshanov²
 
-Samarkand State University named after Sharof Rashidov, Samarkand, Uzbekistan. ORCID 0009-0007-6580-7402. E-mail: erkinovj110@gmail.com
+¹ Samarkand State University named after Sharof Rashidov, Samarkand, Uzbekistan. ORCID 0009-0007-6580-7402
+² Digital Technologies and Artificial Intelligence Development Research Institute, Tashkent, Uzbekistan [affiliation as printed in Hydrology 2026, 13, 276; to be confirmed]
+
+\* Corresponding author: erkinovj110@gmail.com
 
 Draft v0.1, 20 November 2026. Numbers come from the scripts in the repository `1-masala` (branch `claude/project-thread-15xs9v`), each table names its script. References marked [DOI?] still have to be checked against Crossref before submission.
 
@@ -288,6 +291,10 @@ Future work: coupling with salt transport through the aquitards (problem 2 of th
 ## Data and code availability
 
 The code, input data and scripts that produce every number and figure are available at https://github.com/javokhir-erkinov/1-masala (to be archived with a DOI on acceptance).
+
+## Author contributions
+
+J. Erkinov: conceptualisation, model, numerical method, proofs, software, verification, writing. N. Ravshanov: supervision, problem formulation, review and editing. [to be confirmed]
 
 ## Funding, conflicts of interest
 

@@ -42,8 +42,21 @@ def _stehfest(Ns):
     return V
 
 
-def _B(p, Kv, bq, Ss, N):
+def _chet(p, Kv, bq, Ss):
+    """Tashqi tomonida napor o'zgarmas bo'lgan chetki ajratuvchining diagonal hadi."""
+    c = Kv / bq
+    if Ss == 0.0:
+        return c
+    lam = bq * np.sqrt(p * Ss / Kv)
+    return c * lam / np.tanh(lam)
+
+
+def _B(p, Kv, bq, Ss, N, ust=None, ost=None):
     B = np.zeros((N, N))
+    if ust is not None:
+        B[0, 0] += _chet(p, *ust)
+    if ost is not None:
+        B[-1, -1] += _chet(p, *ost)
     for k in range(N - 1):
         c = Kv[k] / bq[k]
         if Ss[k] == 0.0:
@@ -59,18 +72,19 @@ def _B(p, Kv, bq, Ss, N):
     return B
 
 
-def kop_qatlam_laplas(r, p, T, S, Kv, bq, Ss, Q):
-    """Laplas sohasidagi napor pasayishi s(r, p), har bir qatlam uchun."""
+def kop_qatlam_laplas(r, p, T, S, Kv, bq, Ss, Q, ust=None, ost=None):
+    """Laplas sohasidagi napor pasayishi s(r, p), har bir qatlam uchun.
+    ust, ost: (K', b', S'_s) - tizim ustidagi va ostidagi ajratuvchi, tashqarisida napor o'zgarmas."""
     T, S, Q = map(lambda v: np.asarray(v, float), (T, S, Q))
     N = len(T)
     Dm = 1.0 / np.sqrt(T)
-    As = Dm[:, None] * (np.diag(S * p) + _B(p, Kv, bq, Ss, N)) * Dm[None, :]
+    As = Dm[:, None] * (np.diag(S * p) + _B(p, Kv, bq, Ss, N, ust, ost)) * Dm[None, :]
     lam, U = np.linalg.eigh(As)
     Kr = k0(r * np.sqrt(lam))
     return Dm * (U @ (Kr * (U.T @ (Dm * Q)))) / (2 * np.pi * p)
 
 
-def kop_qatlam(r, t, T, S, Kv, bq, Ss, Q, Ns=12):
+def kop_qatlam(r, t, T, S, Kv, bq, Ss, Q, Ns=12, ust=None, ost=None):
     """Vaqt sohasidagi napor pasayishi: (len(t), N) massiv."""
     V = _stehfest(Ns)
     t = np.atleast_1d(np.asarray(t, float))
@@ -78,6 +92,6 @@ def kop_qatlam(r, t, T, S, Kv, bq, Ss, Q, Ns=12):
     for n, tt in enumerate(t):
         a = np.log(2.0) / tt
         for i in range(Ns):
-            out[n] += V[i] * kop_qatlam_laplas(r, (i + 1) * a, T, S, Kv, bq, Ss, Q)
+            out[n] += V[i] * kop_qatlam_laplas(r, (i + 1) * a, T, S, Kv, bq, Ss, Q, ust, ost)
         out[n] *= a
     return out

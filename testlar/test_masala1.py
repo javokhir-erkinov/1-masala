@@ -125,3 +125,29 @@ def test_simmetriya_va_musbatlik():
     for d in aj:
         det = d["tt"] * d["bb"] - d["tb"] * d["bt"]
         assert np.all(d["tt"] >= 0) and np.all(det >= -1e-14)
+
+
+# Olsthoorn (Maas rukni), Stromingen 9(3) 2003, 50-bet, N = 10 ustuni; manbada Hemker–Maas 1987 bilan aynan mos deyilgan
+MAAS_T = [1e-5, 1e-4, 1e-3, 1e-2, 0.1, 1.0, 5.0]
+MAAS_S1 = [0.0, 0.0, 0.0, 0.0030, 0.3404, 0.5362, 0.5363]
+MAAS_S2 = [0.0165, 0.6585, 1.8541, 3.0419, 4.0997, 4.3178, 4.3178]
+
+
+def test_laplas_maas_olsthoorn_2003():
+    a = (0.01, 1.0, 0.0016)
+    s = etalon.kop_qatlam(10.0, MAAS_T, [100.0, 100.0], [1e-4, 1e-4], [0.01], [1.0], [0.0016],
+                          [0, 4 * np.pi * 100], Ns=10, ust=a, ost=a)
+    assert np.allclose(s[:, 0], MAAS_S1, atol=6e-5)
+    assert np.allclose(s[:, 1], MAAS_S2, atol=6e-5)
+
+
+def test_laplas_mlu_two_aquifers():
+    """MLU tutorial (Hemker, Randall 2010), Two-aquifers: 1 min da 5,01 m da 0,29826 m, 15,85 m da 0,050 m."""
+    T = [10, 90, 1.67, 1.66, 1.67, 100]
+    S = [0.2, 0.004, 0.00133, 0.00134, 0.00133, 0.0008]
+    c = [0.55, 17, 33, 33, 17]
+    Q = [0, 0, 0, 0, 0, 180.0]
+    s1 = etalon.kop_qatlam(5.01, [1 / 1440], T, S, [1 / x for x in c], [1] * 5, [0] * 5, Q, Ns=10)[0, 5]
+    s2 = etalon.kop_qatlam(15.85, [1 / 1440], T, S, [1 / x for x in c], [1] * 5, [0] * 5, Q, Ns=10)[0, 5]
+    assert abs(s1 - 0.29826) < 1e-5
+    assert abs(s2 - 0.050) < 6e-4
