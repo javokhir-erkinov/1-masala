@@ -258,8 +258,8 @@ Ikki dastur bir xil to'r va vaqt qadamlarida mashina aniqligigacha (10⁻⁹ m) 
 | 2-qatlam, quduq yonida | 7,237 | 7,260 | 18% |
 | 2-qatlam, markaz | 5,416 | 5,442 | 30% |
 | 1-qatlam (bosimsiz), markaz | 0,051 | 0,060 | 14% (365 sutkada) |
-| 3-qatlam, quduq yonida | 2,297 | 2,302 | 1.2% |
+| 3-qatlam, quduq yonida | 2,297 | 2,302 | 1,2% |
 
-Quduq suvining manbalari (sig'imli model, rasmning b qismi): birinchi soatlarda suv asosan suvli qatlamlar zaxirasidan olinadi. Taxminan 1 sutkada ajratuvchilar zaxirasining ulushi 26% ga yetadi, keyin kamayadi. 365 sutkada suv asosan chegaralar orqali keladi, bug'lanish ham kamayadi. Butun davrda ajratuvchilardan olingan suv 2.9% ni tashkil etadi. Balans qoldig'i ≤ 4e-12.
+Quduq suvining manbalari (sig'imli model, rasmning b qismi): birinchi soatlarda suv asosan suvli qatlamlar zaxirasidan olinadi. Taxminan 1 sutkada ajratuvchilar zaxirasining ulushi 26% ga yetadi, keyin kamayadi. 365 sutkada suv asosan chegaralar orqali keladi, bug'lanish ham kamayadi. Butun davrda ajratuvchilardan olingan suv 2,9% ni tashkil etadi. Balans qoldig'i ≤ 4·10⁻¹².
 
 Xulosa: berilgan napor chegaralari yaqin bo'lgan bu sohada sig'im quduqli qatlamda birinchi kunlardagi napor pasayishini 18–30% ga sekinlashtiradi. 365 sutkada farq 0,5% dan kam. Bosimsiz qatlamda esa sig'im ta'siri bir yildan keyin ham saqlanadi: napor pasayishi 14% kam. Demak sig'imsiz model yuqori qatlamdagi sath pasayishini oshirib baholaydi. Bu esa bug'lanish va sho'rlanish masalalari uchun muhim.
