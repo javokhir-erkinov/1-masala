@@ -236,7 +236,7 @@ Ajratuvchining elastik suv berishini hisobga olgan talqin xatoni deyarli kamayti
 | elastik suv berishi bilan, bir jinsli | 5,65 | 0,05 | 0,63% |
 | elastik suv berishisiz, bir jinsli | 5,64 | 0,06 | 0 |
 
-Har bir holatda balans qoldig'i ≤ 3·10⁻¹² (nisbiy), Pikar iteratsiyalari ≤ 4. Bu misolda t_c = 10,8 va 32 sut, hisob vaqti esa 365 sut, chegaralarda napor berilgan; shuning uchun ajratuvchining elastik suv berishi ta'siri kichik. Geterogenlik esa pasayishni ikki baravar oshiradi va oyna orqali 1-qatlamga o'tadi. Sig'im muhim bo'lgan holatni ko'rsatish uchun keyingi tajribada t ≲ t_c davr (quduqni ishga tushirish, sarfni o'zgartirish) va ε ≳ 1 olinadi.
+Har bir holatda balans qoldig'i ≤ 3·10⁻¹² (nisbiy), Pikar iteratsiyalari ≤ 4. Bu misolda t_c = 10,8 va 25,6 sut, hisob vaqti esa 365 sut, chegaralarda napor berilgan; shuning uchun ajratuvchining elastik suv berishi ta'siri kichik. Geterogenlik esa pasayishni ikki baravar oshiradi va oyna orqali 1-qatlamga o'tadi. Sig'im muhim bo'lgan holatni ko'rsatish uchun keyingi tajribada t ≲ t_c davr (quduqni ishga tushirish, sarfni o'zgartirish) va ε ≳ 1 olinadi.
 
 ## 10. MODFLOW 6 bilan solishtirish
 
@@ -269,7 +269,7 @@ Xulosa: berilgan napor chegaralari yaqin bo'lgan bu sohada ajratuvchining elasti
 
 Parametrlar: `/mnt/project-files/maqola1/etalon_parametrlar/etalonlar.md`. Skript: `tajribalar/t7_maas_mlu.py`, testlar: `testlar/test_masala1.py`.
 
-1. Maas–Olsthoorn 2003 (manbada Hemker–Maas 1987 bilan aynan mos deyilgan): ikki suvli qatlam (kD = 100, S = 10⁻⁴), elastik suv berishi bo'lgan uchta ajratuvchi (c = 100, S′ = 0,0016), tizim ustida va ostida pasayish nol, r = 10. Laplas etaloni tashqi ajratuvchilar bilan kengaytirildi va jadvaldagi 36 qiymatning hammasi bilan bosilgan 4 xonagacha mos keldi. Sonli yechim (tashqi naporlar berilgan ikki qo'shimcha qatlam, M = 20) to'rning eng yaqin nuqtasida (r = 10,69) t ≥ 10⁻³ da etalondan ko'pi bilan 0,25% farq qiladi.
+1. Maas–Olsthoorn 2003 (manbada Hemker–Maas 1987 bilan aynan mos deyilgan): ikki suvli qatlam (kD = 100, S = 10⁻⁴), elastik suv berishi bo'lgan uchta ajratuvchi (c = 100, S′ = 0,0016), tizim ustida va ostida pasayish nol, r = 10. Laplas etaloni tashqi ajratuvchilar bilan kengaytirildi va jadvaldagi 36 qiymatning hammasi bilan bosilgan 4 xonagacha mos keldi. Sonli yechim (tashqi naporlar berilgan ikki qo'shimcha qatlam, M = 20) to'rning eng yaqin nuqtasida (r = 10,69) etalondan quduqli qatlamda t ≥ 10⁻³ da ko'pi bilan 0,31%, ikkinchi qatlamda t ≥ 0,1 da ko'pi bilan 1,1% farq qiladi (audit 21.11.2026).
 2. MLU "Two-aquifers" (Hemker, Randall 2010; 6 qatlamli tasvir, Q = 180 m³/sut): etalon 1 minutda 5,01 m da 0,29826 m beradi (MLU dagi bilan bir xil), 15,85 m da 0,0496 m beradi (MLU da 0,050). Sonli yechim etalondan 0,04% va 0,3% farq qiladi.
 3. Veling–Maas 2009 da napor yoki pasayish jadvali yo'q, faqat zarracha trayektoriyalari bor, shuning uchun u etalon sifatida ishlatilmadi.
 

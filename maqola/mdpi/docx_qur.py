@@ -48,8 +48,10 @@ for st in r.styles:
         rf.set(qn(a), FONT)
 r.core_properties.author = "Javokhir Erkinov"; r.core_properties.last_modified_by = "Javokhir Erkinov"
 r.save(ref)
-out = D / "maqola1_hydrology.docx"
-subprocess.run(["pandoc", str(D / "maqola1_hydrology.md"), "-f", "markdown+tex_math_dollars", "-o", str(out),
+import sys
+NAME = sys.argv[1] if len(sys.argv) > 1 else "maqola1_hydrology"
+out = D / (NAME + ".docx")
+subprocess.run(["pandoc", str(D / (NAME + ".md")), "-f", "markdown+tex_math_dollars", "-o", str(out),
                 "--reference-doc", str(ref), "--resource-path", str(D)], check=True)
 d = docx.Document(out)
 cp = d.core_properties

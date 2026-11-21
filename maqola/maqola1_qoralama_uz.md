@@ -17,7 +17,7 @@ Maqolada har bir ajratuvchi qatlamda vertikal bir o‘lchamli elastik rejim teng
 
 Model markazlashgan chekli hajmlar usuli va oshkormas Eyler sxemasi bilan diskretlanadi. Har bir ajratuvchi ustunidagi noma’lumlar vektorlashgan progonka bilan yo‘qotiladi. Natijada har bir ustun uchun $2\times2$ o‘lchamli simmetrik almashinuv matritsasi va suvli qatlamlar naporlari uchun bitta simmetrik siyrak tizim qoladi. Sxema massani aniq saqlashi, energiya normasida absolyut turg‘unligi va diskret maksimum prinsipini qanoatlantirishi isbotlangan.
 
-Dastur Teys va Xantush–Jakob yechimlarini hamda ajratuvchilarning elastik suv berishini hisobga olgan Laplas sohasidagi ko‘p qatlamli yechimni 0,7% aniqlikda takrorlaydi. Bir xil to‘rda MODFLOW 6 bilan farq $4\cdot10^{-9}$ m dan oshmaydi. Sxema fazo bo‘yicha ikkinchi, vaqt bo‘yicha birinchi tartibda yaqinlashadi, suv balansi qoldig‘i $10^{-11}$ dan kichik.
+Dastur Theis va Hantush–Jacob yechimlarini hamda ajratuvchilarning elastik suv berishini hisobga olgan Laplas sohasidagi ko‘p qatlamli yechimni 0,74% aniqlikda takrorlaydi. Bir xil to‘rda MODFLOW 6 bilan farq $4\cdot10^{-9}$ m dan oshmaydi. Sxema fazo bo‘yicha ikkinchi, vaqt bo‘yicha birinchi tartibda yaqinlashadi, suv balansi qoldig‘i $10^{-11}$ dan kichik.
 
 Hisoblashlar ajratuvchining elastik suv berishini hisobga olmaslik mumkinligini faqat $t_c=b'S'/K'$ xarakterli vaqti hal qilmasligini ko‘rsatdi. Ajratuvchi va suvli qatlamlar elastik suv berish koeffitsiyentlarining nisbati $\varepsilon$ ham ahamiyatga ega: $\varepsilon\gtrsim1$ bo‘lganda ikki model orasidagi farq $t\gg t_c$ da ham saqlanadi. Qalin gilli ajratuvchilar va geterogen filtratsiya maydoni bo‘lgan misolda elastik suv berishi quduqli qatlamda dastlabki napor pasayishini 18–30% ga o‘zgartiradi. Bir yildan keyin ham bosimsiz qatlamda sath pasayishi 14% kam bo‘ladi. Demak elastik suv berishi hisobga olinmagan model bug‘lanish va sho‘rlanishni belgilaydigan grunt suvlari sathining pasayishini oshirib baholaydi.
 
@@ -46,7 +46,9 @@ Kalit so‘zlar: ko‘p qatlamli suvli gorizont; ajratuvchi qatlamning elastik s
 | $t_c$ | ajratuvchining xarakterli vaqti $b'^2S'_s/K'$ | sut |
 | $\varepsilon$ | elastik suv berish koeffitsiyentlari nisbati $S'/\sum_kS_k$ | – |
 | $\tau$, $\delta$, $M$ | vaqt qadami, ajratuvchi qatlamchasi qalinligi, qatlamchalar soni | sut, m, – |
-| $C_{PQ}$, $A_P$ | yacheykalararo o‘tkazuvchanlik, yacheyka yuzasi | m²/sut, m² |
+| $C_{PN}$, $A_P$ | $P$ va $N$ yacheykalar orasidagi o‘tkazuvchanlik, yacheyka yuzasi | m²/sut, m² |
+| $\Delta x$ | yacheyka o‘lchami | m |
+| $\sigma$ | ajratuvchi ustuni tizimidagi $S'_s\delta/\tau$ | m/sut |
 | $\Lambda$ | ajratuvchi ustunining $2\times2$ o‘lchamli almashinuv matritsasi | m/sut |
 
 $k=1,2,3$ indeksi suvli qatlamlarni yuqoridan pastga, $j=1,2$ indeksi ajratuvchilarni raqamlaydi; shtrix ajratuvchi parametrini bildiradi.
@@ -57,7 +59,7 @@ Markaziy Osiyoning sug‘oriladigan tekisliklarida qumli suvli qatlamlar gil va 
 
 N. Ravshanov ilmiy maktabida bunday tizimlar uchun kvaziuch o‘lchamli modellar ketma-ket ishlab chiqilgan. Ravshanov va boshq. (2026a) ikki ajratuvchi bilan bog‘langan uchta geterogen suvli qatlam masalasini ADI sxemasi, yacheykalararo koeffitsiyentning o‘rta garmonik qiymati va massani saqlovchi almashinuv hadi bilan yechgan; modelga zarrachalar ko‘chishi va kolmatatsiya ham kiritilgan. Ravshanov va boshq. (2026b) filtratsiya koeffitsiyenti naporga bog‘liq bo‘lgan to‘rt qatlamli tizimni ko‘rgan. Karimov va boshq. (2025) va Mukhamadiyev va boshq. (2026) bitta uch qatlamli modelni bayon qilgan: unda yuqori qatlam bosimsiz, suv o‘tkazuvchanlik koordinatalarga bog‘liq, bug‘lanish bor va kam o‘tkazuvchan qatlam elastik rejimda. Ammo bu kam o‘tkazuvchan qatlam tizimning eng pastida joylashgan va tubi suv o‘tkazmaydi, ya’ni u ikki suvli qatlamni bog‘lamaydi. Qodirov (2023; shuningdek Ravshanov va boshq. 2017) ustidan va ostidan elastik rejimdagi kam o‘tkazuvchan qatlamlar bilan chegaralangan asosiy suvli qatlam uchun (Hantush 1960 dagi joylashuv) analitik yechimlar olgan; ajratuvchilar tashqarisida napor pasayishi berilgan yoki asos suv o‘tkazmaydi. U shuningdek ustida grunt suvlari va bug‘lanish bo‘lgan chiziqlashtirilgan tizimni ko‘rgan. Bu ishlarda barcha parametrlar o‘zgarmas, ajratuvchining elastik suv berishi esa uchta bog‘langan suvli qatlam orasida emas, bitta "ajratuvchi – suvli qatlam – ajratuvchi" tizimida qaraladi. Ko‘rsatilgan sonli modellarning birortasida suvli qatlamlar orasidagi ajratuvchining elastik suv berishi yo‘q, bog‘langan sxemaning turg‘unligi ham isbotlanmagan.
 
-Xalqaro adabiyotda ajratuvchining elastik suv berishi uzoq vaqtdan beri o‘rganiladi. Hantush (1960) hamda Neuman va Witherspoon (1969) ajratuvchi zaxirasidan ajralgan suv dastlabki napor pasayishini o‘zgartirishini ko‘rsatgan. Hemker (1985) va Hemker, Maas (1987) barcha ajratuvchilarida elastik suv berishi bo‘lgan $n$ qatlamli masalani Laplas sohasida yechgan. Cihan va boshq. (2011) bu yondashuvni ko‘p sonli suvli qatlam va germetik bo‘lmagan quduqlar uchun kengaytirgan. Herrera va Yates (1977) ajratuvchi ta’sirini xotira integrali orqali yozgan. MODFLOW dasturida ajratuvchining elastik suv berishi TLK1 paketi (Leake va boshq. 1994) va CSUB paketidagi kechikuvchi qatlamchalar (Hughes va boshq. 2022) orqali hisobga olinadi. Ajratuvchini bir necha yupqa model qatlami bilan tasvirlash ham mumkin. Demak ajratuvchining elastik suv berishi o‘z-o‘zidan yangi masala emas.
+Xalqaro adabiyotda ajratuvchining elastik suv berishi uzoq vaqtdan beri o‘rganiladi. Hantush (1960) hamda Neuman va Witherspoon (1969) ajratuvchi zaxirasidan ajralgan suv dastlabki napor pasayishini o‘zgartirishini ko‘rsatgan. Hemker (1985) va Hemker va Maas (1987) barcha ajratuvchilarida elastik suv berishi bo‘lgan $n$ qatlamli masalani Laplas sohasida yechgan. Cihan va boshq. (2011) bu yondashuvni ko‘p sonli suvli qatlam va germetik bo‘lmagan quduqlar uchun kengaytirgan. Herrera va Yates (1977) ajratuvchi ta’sirini xotira integrali orqali yozgan. MODFLOW dasturida ajratuvchining elastik suv berishi TLK1 paketi (Leake va boshq. 1994) va CSUB paketidagi kechikuvchi qatlamchalar (Hughes va boshq. 2022) orqali hisobga olinadi. Ajratuvchini bir necha yupqa model qatlami bilan tasvirlash ham mumkin. Demak ajratuvchining elastik suv berishi o‘z-o‘zidan yangi masala emas.
 
 Sug‘oriladigan tekisliklar masalasi uchun quyidagilarning birgalikda bo‘lishi kerak, mavjud vositalarda esa ular birga uchramaydi:
 
@@ -164,17 +166,17 @@ Hantush (1960) hamda Neuman va Witherspoon (1969) yechimlarida bu rolni $S'/S$ n
 
 $\Omega$ soha qadamlari o‘zgaruvchan to‘g‘ri burchakli to‘r bilan qoplanadi, $\Omega$ dan tashqaridagi yacheykalar hisobga kirmaydi. (4) ni yuzasi $A_P$ bo‘lgan $P$ yacheyka va $[t^n,t^{n+1}]$ vaqt qadami bo‘yicha integrallab, oqim hadiga Gauss–Ostrogradskiy teoremasini qo‘llaymiz:
 
-$$\int_{t^n}^{t^{n+1}}\!\!\int_{A_P}S\,\frac{\partial h}{\partial t}\,dA\,dt=\int_{t^n}^{t^{n+1}}\Big[\sum_{Q}\int_{e_{PQ}}T\,\frac{\partial h}{\partial n}\,d\ell+\int_{A_P}(q^--q^+)\,dA-Q_P\Big]dt ,\tag{15}$$
+$$\int_{t^n}^{t^{n+1}}\!\!\int_{A_P}S\,\frac{\partial h}{\partial t}\,dA\,dt=\int_{t^n}^{t^{n+1}}\Big[\sum_{N}\int_{e_{PN}}T\,\frac{\partial h}{\partial n}\,d\ell+\int_{A_P}(q^--q^+)\,dA-Q_P\Big]dt ,\tag{15}$$
 
-bu yerda $e_{PQ}$ qo‘shni $Q$ yacheyka bilan umumiy tomon. (15) uchta yaqinlashish bilan algebraik tenglamaga aylanadi: yacheykadagi napor uning markazidagi qiymat bilan almashtiriladi; vaqt bo‘yicha integrallar $t^{n+1}$ da hisoblanadi (oshkormas Eyler sxemasi); $e_{PQ}$ orqali oqim ikki qo‘shni markazdagi qiymatlar orqali ifodalanadi.
+bu yerda $e_{PN}$ qo‘shni $N$ yacheyka bilan umumiy tomon. (15) uchta yaqinlashish bilan algebraik tenglamaga aylanadi: yacheykadagi napor uning markazidagi qiymat bilan almashtiriladi; vaqt bo‘yicha integrallar $t^{n+1}$ da hisoblanadi (oshkormas Eyler sxemasi); $e_{PN}$ orqali oqim ikki qo‘shni markazdagi qiymatlar orqali ifodalanadi.
 
-Tomon orqali oqim quyidagicha keltirib chiqariladi. Har bir yacheykada $T_P$ va $T_Q$ o‘zgarmas, $d_P$ va $d_Q$ tomonga perpendikulyar yo‘nalishdagi yacheyka o‘lchamlari, $h_e$ tomondagi noma’lum napor bo‘lsin. Ikki yarim yacheykada Darsi qonuni birlik tomon uzunligi uchun bir xil oqimni beradi: $F=2T_P(h_P-h_e)/d_P=2T_Q(h_e-h_Q)/d_Q$. $h_e$ ni yo‘qotib, $F=(h_P-h_Q)\big/\big(d_P/2T_P+d_Q/2T_Q\big)$ ni olamiz, ya’ni yacheykalararo o‘tkazuvchanlik
+Tomon orqali oqim quyidagicha keltirib chiqariladi. Har bir yacheykada $T_P$ va $T_N$ o‘zgarmas, $d_P$ va $d_N$ tomonga perpendikulyar yo‘nalishdagi yacheyka o‘lchamlari, $h_e$ tomondagi noma’lum napor bo‘lsin. Ikki yarim yacheykada Darsi qonuni birlik tomon uzunligi uchun bir xil oqimni beradi: $F=2T_P(h_P-h_e)/d_P=2T_N(h_e-h_Q)/d_N$. $h_e$ ni yo‘qotib, $F=(h_P-h_Q)\big/\big(d_P/2T_P+d_N/2T_N\big)$ ni olamiz, ya’ni yacheykalararo o‘tkazuvchanlik
 
-$$C_{PQ}=\ell_{PQ}\Big(\frac{d_P}{2T_P}+\frac{d_Q}{2T_Q}\Big)^{-1}\tag{16}$$
+$$C_{PN}=\ell_{PN}\Big(\frac{d_P}{2T_P}+\frac{d_N}{2T_N}\Big)^{-1}\tag{16}$$
 
-ga teng, bu yerda $\ell_{PQ}$ tomon uzunligi. Bu ikki suv o‘tkazuvchanlikning o‘rta garmonik qiymati. U $T$ uzilishga ega bo‘lgan joyda oqim uzluksizligini saqlaydi va $T$ bo‘lakli o‘zgarmas bo‘lganda aniq natija beradi. 1-qatlamda $T_1=K_1\max(h_1-z_0,b_{\min})$ olinadi, bu yerda $b_{\min}>0$ kichik son: suvsizlangan yacheyka tizimdan uzilib qolmaydi. Natijada $P$ yacheyka uchun quyidagi tenglama hosil bo‘ladi:
+ga teng, bu yerda $\ell_{PN}$ tomon uzunligi. Bu ikki suv o‘tkazuvchanlikning o‘rta garmonik qiymati. U $T$ uzilishga ega bo‘lgan joyda oqim uzluksizligini saqlaydi va $T$ bo‘lakli o‘zgarmas bo‘lganda aniq natija beradi. 1-qatlamda $T_1=K_1\max(h_1-z_0,b_{\min})$ olinadi, bu yerda $b_{\min}>0$ kichik son: suvsizlangan yacheyka tizimdan uzilib qolmaydi. Natijada $P$ yacheyka uchun quyidagi tenglama hosil bo‘ladi:
 
-$$\frac{S_PA_P}{\tau}(h_P^{n+1}-h_P^n)+\sum_QC_{PQ}(h_P^{n+1}-h_Q^{n+1})+A_P(q^+_P-q^-_P)^{n+1}=A_P(W-E)_P^{n+1}-Q_P,\tag{17}$$
+$$\frac{S_PA_P}{\tau}(h_P^{n+1}-h_P^n)+\sum_NC_{PN}(h_P^{n+1}-h_N^{n+1})+A_P(q^+_P-q^-_P)^{n+1}=A_P(W-E)_P^{n+1}-Q_P,\tag{17}$$
 
 1-qatlamda $S_P=\mu$. Quduq o‘zi joylashgan yacheykada nuqtaviy yutilish sifatida qatnashadi.
 
@@ -192,9 +194,9 @@ $$q^+=c_e(h_j-u_1),\qquad q^-=c_e(u_M-h_{j+1}).\tag{19}$$
 
 ### Ajratuvchi noma’lumlarini yo‘qotish
 
-Har bir ustunda (18) simmetrik uch diagonalli tizimni tashkil etadi: $\mathfrak Tu=s\,u^n+c_ee_1h_j+c_ee_Mh_{j+1}$, bu yerda $s=S'_s\delta/\tau$, $e_1$ va $e_M$ birinchi va oxirgi birlik vektorlar. Tizim chiziqli, uning o‘ng tomoni ikki suvli qatlam naporlariga faqat oxirgi ikki had orqali bog‘liq. Superpozitsiya bo‘yicha yechim quyidagicha yoziladi:
+Har bir ustunda (18) simmetrik uch diagonalli tizimni tashkil etadi: $\mathfrak Tu=\sigma u^n+c_ee_1h_j+c_ee_Mh_{j+1}$, bu yerda $\sigma=S'_s\delta/\tau$, $e_1$ va $e_M$ birinchi va oxirgi birlik vektorlar. Tizim chiziqli, uning o‘ng tomoni ikki suvli qatlam naporlariga faqat oxirgi ikki had orqali bog‘liq. Superpozitsiya bo‘yicha yechim quyidagicha yoziladi:
 
-$$u=a+\alpha\,h_j+\beta\,h_{j+1},\qquad \mathfrak Ta=su^n,\ \ \mathfrak T\alpha=c_ee_1,\ \ \mathfrak T\beta=c_ee_M.\tag{20}$$
+$$u=a+\alpha\,h_j+\beta\,h_{j+1},\qquad \mathfrak Ta=\sigma u^n,\ \ \mathfrak T\alpha=c_ee_1,\ \ \mathfrak T\beta=c_ee_M.\tag{20}$$
 
 $a$, $\alpha$, $\beta$ vektorlar uchta o‘ng tomon uchun bitta progonka bilan topiladi. (20) dagi $u_1$ va $u_M$ ni (19) ga qo‘ysak, chegaralardagi oqimlar ikki qo‘shni suvli qatlam naporlariga chiziqli bog‘liq bo‘ladi:
 
@@ -229,13 +231,13 @@ $$\Delta V_{\rm qatlam}+\Delta V_{\rm ajratuvchi}=\tau\Big[\sum A(W-E_{\rm lin})
 
 tenglik aniq bajariladi. Bu yerda $B_D$ napor berilgan yacheykalardan kelgan oqim.
 
-Isbot. $C_{PQ}$ simmetrik, shuning uchun gorizontal oqimlar juft-jufti bilan qisqaradi. (21) dagi oqimlar (19) chetki oqimlar bilan bir xil, demak vertikal oqimlar ham qisqaradi. □
+Isbot. $C_{PN}$ simmetrik, shuning uchun gorizontal oqimlar juft-jufti bilan qisqaradi. (21) dagi oqimlar (19) chetki oqimlar bilan bir xil, demak vertikal oqimlar ham qisqaradi. □
 
 ### 2-lemma (almashinuv matritsasi)
 
 $\Lambda$ simmetrik, uning diagonaldan tashqari elementlari musbat emas, qatorlar yig‘indisi manfiy emas. Demak $\Lambda$ musbat yarim aniq, kondensatsiyadan keyingi matritsa esa simmetrik M-matritsa.
 
-Isbot. $\mathfrak T$ qat’iy diagonal ustunlikka ega M-matritsa, shuning uchun $\mathfrak T^{-1}\ge0$, demak $\alpha,\beta\ge0$. $\mathfrak T$ simmetrik bo‘lgani uchun $\alpha_M=\beta_1$. $\mathfrak T\mathbb 1=s\mathbb 1+c_ee_1+c_ee_M$ tenglikdan $1-\alpha_m-\beta_m=(\mathfrak T^{-1}s\mathbb 1)_m\ge0$ kelib chiqadi. □
+Isbot. $\mathfrak T$ qat’iy diagonal ustunlikka ega M-matritsa, shuning uchun $\mathfrak T^{-1}\ge0$, demak $\alpha,\beta\ge0$. $\mathfrak T$ simmetrik bo‘lgani uchun $\alpha_M=\beta_1$. $\mathfrak T\mathbb 1=\sigma\mathbb 1+c_ee_1+c_ee_M$ tenglikdan $1-\alpha_m-\beta_m=(\mathfrak T^{-1}\sigma\mathbb 1)_m\ge0$ kelib chiqadi. □
 
 ### 1-teorema (absolyut turg‘unlik)
 
@@ -257,7 +259,7 @@ Demak sxema ixtiyoriy $\tau$ da monoton. Xususan, $K$ yoki $K'$ keskin o‘zgara
 
 ### Yaqinlashish
 
-Silliq yechimda approksimatsiya xatosi $O(\tau+h^2+\delta^2)$. 1-teorema bilan birga bu chiziqli masalada $D$ normada shu tartibdagi yaqinlashishni beradi. Notekis to‘rda markazlashgan sxemaning lokal approksimatsiya xatosi birinchi tartibli bo‘lsa ham, global aniqlik ikkinchi tartibda saqlanishi ma’lum (Forsyth va Sammon 1988). Tartiblar 5-bo‘limda sonli tekshiriladi.
+Silliq yechimda approksimatsiya xatosi $O(\tau+\Delta x^2+\delta^2)$. 1-teorema bilan birga bu chiziqli masalada $D$ normada shu tartibdagi yaqinlashishni beradi. Notekis to‘rda markazlashgan sxemaning lokal approksimatsiya xatosi birinchi tartibli bo‘lsa ham, global aniqlik ikkinchi tartibda saqlanishi ma’lum (Forsyth va Sammon 1988). Tartiblar 5-bo‘limda sonli tekshiriladi.
 
 ## 5. Tekshiruv
 
@@ -267,7 +269,7 @@ Bir jinsli bosimli qatlamlar va sarfi o‘zgarmas quduq uchun (4)–(8) Laplas s
 
 $$\bar q^+=\frac{K'}{b'}\lambda\,(\coth\lambda\,\bar h_j-\operatorname{csch}\lambda\,\bar h_{j+1}),\qquad \bar q^-=\frac{K'}{b'}\lambda\,(\operatorname{csch}\lambda\,\bar h_j-\coth\lambda\,\bar h_{j+1}).$$
 
-Suvli qatlamlar tizimi Hemker (1985) yondashuvi bo‘yicha simmetrik ko‘rinishda xos vektorlarga yoyiladi va $K_0$ modifikatsiyalangan Bessel funksiyalari orqali yechiladi. Vaqt sohasiga 12 hadli Stehfest (1970) algoritmi bilan qaytiladi. Bu etalon Teys (1935) yechimini $10^{-5}$ nisbiy farq bilan takrorlaydi. Xantush–Jakob (1955) yechimi ham $10^{-4}$ farq bilan olinadi: buning uchun yuqori qatlamga juda katta $T$ va $S$, ajratuvchiga esa $S'_s=0$ beriladi (`testlar/test_masala1.py`).
+Suvli qatlamlar tizimi Hemker (1985) yondashuvi bo‘yicha simmetrik ko‘rinishda xos vektorlarga yoyiladi va $K_0$ modifikatsiyalangan Bessel funksiyalari orqali yechiladi. Vaqt sohasiga 12 hadli Stehfest (1970) algoritmi bilan qaytiladi. Bu etalon Theis (1935) yechimini $10^{-5}$ nisbiy farq bilan takrorlaydi. Hantush–Jacob (1955) yechimi ham $10^{-4}$ farq bilan olinadi: buning uchun yuqori qatlamga juda katta $T$ va $S$, ajratuvchiga esa $S'_s=0$ beriladi (`testlar/test_masala1.py`).
 
 ### Ikkala ajratuvchisida elastik suv berishi bo‘lgan uch qatlam
 
@@ -290,7 +292,7 @@ Shu masala MODFLOW 6 da (Langevin va boshq. 2017) tuzildi: har bir ajratuvchi 20
 
 $M=32$ da tartibning biroz pasayishi vaqt bo‘yicha xatodan kelib chiqadi: $\tau=10^{-4}$ sut da u shu kattalikda.
 
-2-jadvalda uch qatlamli bog‘langan sxema butunligicha tekshiriladi (`tajribalar/t8_yaqinlashish.py`). Soha 1000 × 1000 m, chegaralarda oqim nolga teng. $K_1$, $K_2$ va 1-ajratuvchidagi $K'$ $x$, $y$ koordinatalarga bog‘liq ravishda silliq o‘zgaradi. Ikkala ajratuvchida elastik suv berishi bor ($b'=4$ m, $S'_s=2\cdot10^{-3}$ 1/m). Boshlang‘ich holatda 1-qatlamda balandligi 1 m bo‘lgan Gauss shaklidagi do‘nglik olingan, yechimlar $t=5$ sut da solishtiriladi. Fazo bo‘yicha yacheyka o‘lchami $h$ va qatlamcha qalinligi $\delta$ birga ikki marta kichraytiriladi. Xato uchta suvli qatlam naporlarining 160 × 160, $M=32$ yechimining yacheykalar bo‘yicha o‘rtacha qiymatlaridan o‘rtacha kvadratik chetlanishi sifatida hisoblanadi. Vaqt bo‘yicha 40 × 40, $M=8$ to‘rda $\tau$ ikki marta kichraytiriladi, etalon $\tau=1/256$ sut.
+2-jadvalda uch qatlamli bog‘langan sxema butunligicha tekshiriladi (`tajribalar/t8_yaqinlashish.py`). Soha 1000 × 1000 m, chegaralarda oqim nolga teng. $K_1$, $K_2$ va 1-ajratuvchidagi $K'$ $x$, $y$ koordinatalarga bog‘liq ravishda silliq o‘zgaradi. Ikkala ajratuvchida elastik suv berishi bor ($b'=4$ m, $S'_s=2\cdot10^{-3}$ 1/m). Boshlang‘ich holatda 1-qatlamda balandligi 1 m bo‘lgan Gauss shaklidagi do‘nglik olingan, yechimlar $t=5$ sut da solishtiriladi. Fazo bo‘yicha yacheyka o‘lchami $\Delta x$ va qatlamcha qalinligi $\delta$ birga ikki marta kichraytiriladi. Xato uchta suvli qatlam naporlarining 160 × 160, $M=32$ yechimining yacheykalar bo‘yicha o‘rtacha qiymatlaridan o‘rtacha kvadratik chetlanishi sifatida hisoblanadi. Vaqt bo‘yicha 40 × 40, $M=8$ to‘rda $\tau$ ikki marta kichraytiriladi, etalon $\tau=1/256$ sut.
 
 2-jadval. Bog‘langan sxemaning to‘r va vaqt qadami bo‘yicha yaqinlashishi: $t=5$ sut dagi naporning o‘rtacha kvadratik xatosi.
 
@@ -301,7 +303,7 @@ $M=32$ da tartibning biroz pasayishi vaqt bo‘yicha xatodan kelib chiqadi: $\ta
 | 80 × 80, 16 | $7{,}10\cdot10^{-6}$ | 2,32 | 0,125 | $1{,}94\cdot10^{-4}$ | 1,03 |
 | | | | 0,0625 | $9{,}39\cdot10^{-5}$ | 1,05 |
 
-Tartiblar $O(h^2+\delta^2+\tau)$ bahoni tasdiqlaydi. Eng mayda to‘rdagi 2,32 qiymat biroz katta chiqqan, chunki bu to‘r etalondan faqat bir marta yirikroq.
+Tartiblar $O(\Delta x^2+\delta^2+\tau)$ bahoni tasdiqlaydi. Eng mayda to‘rdagi 2,32 qiymat biroz katta chiqqan, chunki bu to‘r etalondan faqat bir marta yirikroq.
 
 Bitta ajratuvchi ustunida vaqt qadami maydalanganda ham tartib 1 ga teng. Barcha jarayonlar qatnashgan geterogen, murakkab shakldagi masalada suv balansi qoldig‘i har bir qadamda $10^{-10}$ dan kichik. $S'_s\to0$ da yechim elastik suv berishi hisobga olinmagan modelga yaqinlashadi (farq $<10^{-8}$ m).
 
@@ -311,17 +313,17 @@ Dalem tajribasi Kruseman va de Ridder (1990) kitobining 4.2-jadvalida De Ridder 
 
 3-jadval. Dalem tajribasi: uchta talqindagi parametrlar va o‘rtacha kvadratik farq (`tajribalar/t4_dalem.py`).
 
-| Talqin | $KD$, m²/sut | $S$ | $c$, sut | $S'$ | RMSE, mm |
+| Talqin | $T$, m²/sut | $S$ | $c$, sut | $S'$ | RMSE, mm |
 |---|---|---|---|---|---|
 | Walton usuli (Kruseman, de Ridder 1990) | 1731 | $1{,}9\cdot10^{-3}$ | 468 | | 6,9 |
 | ajratuvchining elastik suv berishisiz, eng kichik kvadratlar | 1674 | $1{,}77\cdot10^{-3}$ | 325 | | 5,87 |
 | ajratuvchining elastik suv berishi bilan, eng kichik kvadratlar | 1670 | $1{,}52\cdot10^{-3}$ | 370 | $1{,}1\cdot10^{-3}$ | 5,80 |
 
-Ajratuvchining elastik suv berishini qo‘shish xatoni deyarli kamaytirmaydi, $S'$ esa ishonchli aniqlanmaydi: $\lg S'$ ning standart chetlanishi 0,41. Kuzatuvlar 0,015–0,33 sut oralig‘ida, bu topilgan $t_c\approx0{,}4$ sut bilan bir tartibda. Demak bu ma’lumotlar modelni tasdiqlaydi, lekin faqat suvli qatlamdagi pasayish bo‘yicha ajratuvchining elastik suv berishini tasdiqlab bo‘lmaydi. Shunga qaramay topilgan $S'=1{,}1\cdot10^{-3}$ qiymat Kruseman va de Ridder (1990, 97–98-betlar) Neuman–Witherspoon nisbatlar usuli bilan olgan $S'=1{,}1\cdot10^{-3}$ bilan mos keladi. Ular ajratuvchi ichidagi qo‘shimcha pyezometrdan foydalangan ($D'=8$ m, $K'D'/S'=126$ m²/sut). Ularning o‘rtacha parametrlari: $KD=1800$ m²/sut, $S=1{,}7\cdot10^{-3}$, $c=450$ sut. O‘lchangan pasayishlar chop etilishdan oldin quduqning to‘liq ochmaganligi va dengiz suvi ko‘tarilishi ta’siri bo‘yicha tuzatilgan, biz ularni shu ko‘rinishda ishlatdik.
+Ajratuvchining elastik suv berishini qo‘shish xatoni deyarli kamaytirmaydi, $S'$ esa ishonchli aniqlanmaydi: $\lg S'$ ning standart chetlanishi 0,41. Kuzatuvlar 0,015–0,33 sut oralig‘ida, bu topilgan $t_c\approx0{,}4$ sut bilan bir tartibda. Demak bu ma’lumotlar modelni tasdiqlaydi, lekin faqat suvli qatlamdagi pasayish bo‘yicha ajratuvchining elastik suv berishini tasdiqlab bo‘lmaydi. Shunga qaramay topilgan $S'=1{,}1\cdot10^{-3}$ qiymat Kruseman va de Ridder (1990, 97–98-betlar) Neuman–Witherspoon nisbatlar usuli bilan olgan $S'=1{,}1\cdot10^{-3}$ bilan mos keladi. Ular ajratuvchi ichidagi qo‘shimcha pyezometrdan foydalangan ($b'=8$ m, $K'b'/S'=126$ m²/sut). Ularning o‘rtacha parametrlari: $T=1800$ m²/sut, $S=1{,}7\cdot10^{-3}$, $c=450$ sut. O‘lchangan pasayishlar chop etilishdan oldin quduqning to‘liq ochmaganligi va dengiz suvi ko‘tarilishi ta’siri bo‘yicha tuzatilgan, biz ularni shu ko‘rinishda ishlatdik.
 
 ### Chop etilgan ko‘p qatlamli misollar
 
-Olsthoorn (2003) uchta ajratuvchi ($c=100$, $S'=0{,}0016$) orasidagi ikki suvli qatlam ($kD=100$, $S=10^{-4}$) uchun pasayishlarni keltiradi. Tizim ustida va ostida pasayish nolga teng, $r=10$, $t=10^{-5}$–5. Maqolada bu qiymatlar Hemker va Maas (1987) natijalari bilan bir xil ekani aytilgan. Ikki tashqi ajratuvchi bilan kengaytirilgan Laplas etalonimiz jadvaldagi 36 qiymatning hammasini bosilgan to‘rt xonagacha takrorlaydi (`testlar/test_masala1.py`). Sonli modelda tashqi naporlar napori berilgan ikki qatlam bilan, har bir ajratuvchi $M=20$ qatlamcha bilan tasvirlandi. To‘rning eng yaqin nuqtasida ($r=10{,}69$) $t\ge10^{-3}$ da etalondan farq 0,25% dan oshmaydi (`tajribalar/t7_maas_mlu.py`). Kattaroq farqlar faqat birinchi vaqt qadamlarida uchraydi.
+Olsthoorn (2003) uchta ajratuvchi ($c=100$, $S'=0{,}0016$) orasidagi ikki suvli qatlam ($T=100$, $S=10^{-4}$) uchun pasayishlarni keltiradi. Tizim ustida va ostida pasayish nolga teng, $r=10$, $t=10^{-5}$–5. Maqolada bu qiymatlar Hemker va Maas (1987) natijalari bilan bir xil ekani aytilgan. Ikki tashqi ajratuvchi bilan kengaytirilgan Laplas etalonimiz jadvaldagi 36 qiymatning hammasini bosilgan to‘rt xonagacha takrorlaydi (`testlar/test_masala1.py`). Sonli modelda tashqi naporlar napori berilgan ikki qatlam bilan, har bir ajratuvchi $M=20$ qatlamcha bilan tasvirlandi. To‘rning eng yaqin nuqtasida ($r=10{,}69$) etalondan farq quduqli qatlamda $t\ge10^{-3}$ da 0,31% dan, ikkinchi qatlamda $t\ge0{,}1$ da 1,1% dan oshmaydi (`tajribalar/t7_maas_mlu.py`). Nisbiy farq faqat birinchi vaqt qadamlarida, ikkinchi qatlamdagi pasayish hali 0,01 dan kichik bo‘lganda kattaroq.
 
 MLU qo‘llanmasidagi "Two-aquifers" tekshiruv misoli (Hemker va Randall 2010) bosimsiz qatlam, 10 m qalinlikdagi ajratuvchi va quduqli qatlamdan ($Q=180$ m³/sut) iborat. Unda ajratuvchining elastik suv berishi va gorizontal oqimi uchta yupqa qatlam bilan tasvirlangan, jami oltita qatlam. Laplas etalonimiz 1 minutdan keyin $r=5{,}01$ m da 0,29826 m beradi, bu MLU qiymatining barcha bosilgan raqamlari bilan bir xil. 15,85 m da 0,0496 m olinadi, MLU da 0,050 m. Xuddi shu olti qatlamli tizim uchun sonli model etalondan to‘rning ikki eng yaqin nuqtasida 0,04% va 0,3% farq qiladi. Veling va Maas (2009) misolida faqat zarrachalar trayektoriyalari keltirilgani uchun u ishlatilmadi.
 
@@ -348,13 +350,13 @@ $\varepsilon$ o‘zgarmas bo‘lganda $t/t_c$ bo‘yicha chizilgan egri chiziqla
 
 Soha 2000 × 1000 m, to‘r 80 × 40 yacheyka. 1-qatlam bosimsiz, unda filtratsiya koeffitsiyenti kichik linza va egri-bugri yo‘nalgan yuqori o‘tkazuvchan o‘zan bor. $K_2(x,y)$ silliq o‘zgaradi va linzaga ega, $K_3$ ikki zonadan iborat. 1-ajratuvchida $K'$ 20 marta katta bo‘lgan gidrogeologik oyna bor. Infiltratsion ta’minot $6\cdot10^{-4}$ m/sut; bug‘lanish parametrlari $E_0=1{,}5\cdot10^{-3}$ m/sut, $\Delta=3$ m, $n=1{,}5$. Chap va o‘ng chegarada napor berilgan. To‘rtta quduq jami 3200 m³/sut suv oladi: uchtasining filtri 2-qatlamda, bittasiniki 3-qatlamda. Hisob statsionar holatdan boshlanadi.
 
-Yupqa ajratuvchilarda ($t_c=11$ va 32 sut) geterogenlik 2-qatlamdagi eng katta pasayishni bir jinsli maydonga nisbatan ikki baravar oshiradi (10,5 m va 5,6 m). Oyna orqali pasayish grunt suvlari sathiga ham o‘tadi (0,67 m va 0,05 m). Bir yil davomida quduqlar suvining 0,6% i ajratuvchilar zaxirasidan olinadi va elastik suv berishi pasayishni 0,5% dan kam o‘zgartiradi (`tajribalar/t5_geterogen.py`).
+Yupqa ajratuvchilarda ($t_c=11$ va 26 sut) geterogenlik 2-qatlamdagi eng katta pasayishni bir jinsli maydonga nisbatan ikki baravar oshiradi (10,5 m va 5,6 m). Oyna orqali pasayish grunt suvlari sathiga ham o‘tadi (0,67 m va 0,05 m). Bir yil davomida quduqlar suvining 0,6% i ajratuvchilar zaxirasidan olinadi va elastik suv berishi pasayishni 0,5% dan kam o‘zgartiradi (`tajribalar/t5_geterogen.py`).
 
 Qalin gilli ajratuvchilarda ($b'=15$ va 20 m, $K'=10^{-4}$ va $5\cdot10^{-5}$ m/sut, $S'_s=4\cdot10^{-4}$ 1/m) $t_c=900$ va 3200 sut, ya’ni hisoblangan bir yildan uzoq. Barcha o‘zgarishlar faqat quduqlardan kelishi uchun infiltratsion ta’minot o‘zgarmas olindi (3-rasm).
 
 3-rasm. Qalin gilli ajratuvchilar: (a) to‘rtta nuqtadagi napor pasayishi, ajratuvchining elastik suv berishi hisobga olingan (tutash chiziq) va olinmagan (uzuq chiziq) model; (b) elastik suv berishi hisobga olingan modelda quduqlar suvining manbalari, umumiy sarfga nisbatan foizda.
 
-Elastik suv berishi 2-qatlamda dastlabki napor pasayishini 18–30% ga sekinlashtiradi. Taxminan $t=1$ sut da quduqlar suvining 26% i ajratuvchilardan keladi. Keyinchalik asosiy manba napor berilgan chegaralar bo‘ladi, bir yildan keyin quduqli qatlamdagi farq 0,5% dan kam. Bosimsiz qatlamda esa holat boshqacha: bir yildan keyin grunt suvlari sathi elastik suv berishi hisobga olingan modelda 0,051 m ga, hisobga olinmagan modelda 0,060 m ga pasayadi. 14% lik bu farq hisob oxirigacha saqlanadi. Balans qoldig‘i $4\cdot10^{-12}$ dan kichik, Pikar iteratsiyalari har bir qadamda 4 tadan oshmaydi.
+Elastik suv berishi 2-qatlamda dastlabki napor pasayishini 18–30% ga sekinlashtiradi. Taxminan $t=1$ sut da quduqlar suvining 26% i ajratuvchilardan keladi. Keyinchalik asosiy manba napor berilgan chegaralar bo‘ladi, bir yildan keyin quduqli qatlamdagi farq 0,5% dan kam. Bosimsiz qatlamda esa holat boshqacha: bir yildan keyin grunt suvlari sathi elastik suv berishi hisobga olingan modelda 0,051 m ga, hisobga olinmagan modelda 0,060 m ga pasayadi. Demak elastik suv berishi sath pasayishini 14% ga kamaytiradi va bu farq hisob oxirigacha saqlanadi. Balans qoldig‘i $4\cdot10^{-12}$ dan kichik, Pikar iteratsiyalari har bir qadamda 4 tadan oshmaydi.
 
 ## 7. Muhokama
 
@@ -368,9 +370,9 @@ Modelning cheklovlari quyidagilar. 2- va 3-qatlamlar doimo bosimli deb olinadi, 
 
 1. Har bir ajratuvchida elastik rejim tenglamasi, $K(x,y)$, bosimsiz yuqori qatlam, infiltratsion ta’minot, bug‘lanish va quduqlar bo‘lgan uch qatlamli model massa saqlanish qonuni va Darsi qonunidan keltirib chiqarildi. U har bir ajratuvchi ustunini aniq yo‘qotadigan chekli hajmlar sxemasi bilan yechildi.
 2. Sxema massani aniq saqlaydi, elastik suv zaxirasi bilan vaznlangan normada absolyut turg‘un va diskret maksimum prinsipini qanoatlantiradi. Kondensatsiyalangan almashinuv matritsasi simmetrik va musbat yarim aniq.
-3. Dastur Teys, Xantush–Jakob va Laplas sohasidagi ko‘p qatlamli yechimlarni 0,7% aniqlikda takrorlaydi. MODFLOW 6 bilan farq $4\cdot10^{-9}$ m. Yaqinlashish tartibi fazo bo‘yicha (suvli qatlamlar to‘ri va ajratuvchi qatlamchalari) ikki, vaqt bo‘yicha bir.
+3. Dastur Theis, Hantush–Jacob va Laplas sohasidagi ko‘p qatlamli yechimlarni 0,74% aniqlikda takrorlaydi. MODFLOW 6 bilan farq $4\cdot10^{-9}$ m. Yaqinlashish tartibi fazo bo‘yicha (suvli qatlamlar to‘ri va ajratuvchi qatlamchalari) ikki, vaqt bo‘yicha bir.
 4. Ajratuvchining elastik suv berishini hisobga olmaslik mumkinligi $t/t_c$ va $\varepsilon=S'/\sum S$ ga bog‘liq. $\varepsilon\gtrsim1$ da uning ta’siri $t_c$ dan ancha keyin ham saqlanadi.
-5. Qalin gilli ajratuvchilar va geterogen maydonda ajratuvchining elastik suv berishi hisobga olinmagan model bir yildan keyin bosimsiz qatlamdagi sath pasayishini taxminan 14% ga oshirib baholaydi.
+5. Qalin gilli ajratuvchilar va geterogen maydonda ajratuvchining elastik suv berishi hisobga olinganda bir yildan keyin bosimsiz qatlamdagi sath pasayishi taxminan 14% ga kam bo‘ladi (0,051 m va 0,060 m); hisobga olinmagan model bu pasayishni oshirib baholaydi.
 
 Keyingi ish: ajratuvchi orqali tuzlar ko‘chishi bilan bog‘lash (dissertatsiyaning 2-masalasi) va ajratuvchida pyezometrlari bo‘lgan obyekt ma’lumotlari bo‘yicha kalibrlash.
 
