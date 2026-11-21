@@ -67,5 +67,5 @@ ax[1].plot(tt, -np.array([x["dV_qatlam"] for x in b]) / dt / Qr * 100, label="su
 ax[1].plot(tt, np.array([x["chegara"] + x["W"] - x["E"] for x in b]) / dt / Qr * 100,
            label="chegaralar va bug'lanish kamayishi")
 ax[1].set_xscale("log"); ax[1].set_xlabel(r"$t$, sut"); ax[1].set_ylabel("quduqlar sarfiga nisbatan, %")
-ax[1].legend(fontsize=7); ax[1].grid(alpha=.3, which="both"); ax[1].set_title("b) quduq suvining manbalari (elastik suv berishi hisobga olingan model)", fontsize=9)
+ax[1].legend(fontsize=7); ax[1].grid(alpha=.3, which="both"); ax[1].set_title("b) quduq suvining manbalari", fontsize=9)
 fig.tight_layout(); fig.savefig("tajribalar/t6_qalin_ajratuvchi.png", dpi=200, metadata={"Software": None})
