@@ -8,6 +8,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.ticker
 from masala1 import etalon
+import sys
+EN = "en" in sys.argv[1:]
 
 T = [200.0, 100.0, 300.0]; S0 = np.array([2e-4, 1e-4, 3e-4])
 Kv = [1e-3, 1e-3]; bq = [5.0, 5.0]; Q = 500.0; r = 30.0; Ss = 1e-4
@@ -25,14 +27,15 @@ for m in (10.0, 1.0, 0.1, 0.01):
     nat["holatlar"].append({"eps": eps, "farq": e.tolist()})
     for a, k in zip(ax, (1, 0)):
         a.loglog(t / tc, 100 * e[:, k], label=rf"$\varepsilon$ = {eps:.2g}")
-for a, sar in zip(ax, ("a) quduqli 2-qatlam", "b) 1-qatlam")):
-    a.set_xlabel(r"$t\,/\,t_c$ (o'lchamsiz)"); a.set_title(sar, fontsize=10); a.grid(alpha=.3, which="both")
+for a, sar in zip(ax, (("(a) pumped aquifer 2", "(b) aquifer 1") if EN else ("a) quduqli 2-qatlam", "b) 1-qatlam"))):
+    a.set_xlabel(r"$t\,/\,t_c$" if EN else r"$t\,/\,t_c$ (o'lchamsiz)"); a.set_title(sar, fontsize=10); a.grid(alpha=.3, which="both")
     a.axhline(5, color="k", lw=.8, ls="--")
     a.yaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v:g}"))
 ax[0].set_ylabel(r"$|s-s_0|\,/\,s$, %"); ax[0].legend(fontsize=8)
 fig.tight_layout()
-fig.savefig("tajribalar/t2_tc_mezoni.png", dpi=200, metadata={"Software": None})
-json.dump(nat, open("tajribalar/t2_tc_mezoni.json", "w"))
+fig.savefig("tajribalar/t2_tc_mezoni_en.png" if EN else "tajribalar/t2_tc_mezoni.png", dpi=200, metadata={"Software": None})
+if not EN:
+    json.dump(nat, open("tajribalar/t2_tc_mezoni.json", "w"))
 for h in nat["holatlar"]:
     e = np.array(h["farq"])
     i = np.flatnonzero(np.nan_to_num(e[:, 1]) > 0.05)

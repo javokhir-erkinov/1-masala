@@ -7,6 +7,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import masala1 as m1
 import importlib.util, sys, os
+EN = "en" in sys.argv[1:]
 
 spec = importlib.util.spec_from_file_location("t5", os.path.join(os.path.dirname(__file__), "t5_geterogen.py"))
 src = open(spec.origin).read().split("\nnat, R = {}, {}")[0]
@@ -52,20 +53,21 @@ for n, nom in enumerate(["2-qatlam (20,30)", "2-qatlam (20,40)", "1-qatlam (20,4
     nat[nom] = {"s_365_sigimli": float(s1[-1]), "s_365_sigimsiz": float(s0[-1]),
                 "max_nisbiy_farq": float(np.max(abs(s1[i] - s0[i]) / s1[i])) if i.any() else None}
 print(json.dumps(nat, indent=1))
-json.dump(nat, open("tajribalar/t6_qalin_ajratuvchi.json", "w"), indent=1)
+if not EN:
+    json.dump(nat, open("tajribalar/t6_qalin_ajratuvchi.json", "w"), indent=1)
 
 fig, ax = plt.subplots(1, 2, figsize=(9, 3.6))
-for n, (nom, c) in enumerate(zip(["2-qatlam, quduq yonida", "2-qatlam, markaz", "1-qatlam, markaz", "3-qatlam, quduq yonida"], "C0 C1 C2 C3".split())):
+for n, (nom, c) in enumerate(zip((["aquifer 2, near well", "aquifer 2, centre", "aquifer 1, centre", "aquifer 3, near well"] if EN else ["2-qatlam, quduq yonida", "2-qatlam, markaz", "1-qatlam, markaz", "3-qatlam, quduq yonida"]), "C0 C1 C2 C3".split())):
     ax[0].plot(t, o1[0, n] - o1[:, n], c, label=nom)
     ax[0].plot(R["sigimsiz"]["t"], o0[0, n] - o0[:, n], c + "--")
-ax[0].set_xlabel(r"$t$, sut"); ax[0].set_ylabel("napor pasayishi, m"); ax[0].legend(fontsize=7); ax[0].grid(alpha=.3)
-ax[0].set_title("a) tutash: elastik suv berishi bilan, uzuq: usiz", fontsize=9)
+ax[0].set_xlabel(r"$t$, d" if EN else r"$t$, sut"); ax[0].set_ylabel(r"drawdown $s$, m" if EN else "napor pasayishi, m"); ax[0].legend(fontsize=7); ax[0].grid(alpha=.3)
+ax[0].set_title("(a) solid: with aquitard storage, dashed: without" if EN else "a) tutash: elastik suv berishi bilan, uzuq: usiz", fontsize=9)
 b = R["sigimli"]["bals"]; tt = np.array([x["t"] for x in b]); dt = np.diff(np.r_[0, tt])
 Qr = np.array([x["Q"] for x in b]) / dt
-ax[1].plot(tt, -np.array([x["dV_ajratuvchi"] for x in b]) / dt / Qr * 100, label="ajratuvchilar zaxirasi")
-ax[1].plot(tt, -np.array([x["dV_qatlam"] for x in b]) / dt / Qr * 100, label="suvli qatlamlar zaxirasi")
+ax[1].plot(tt, -np.array([x["dV_ajratuvchi"] for x in b]) / dt / Qr * 100, label="aquitard storage" if EN else "ajratuvchilar zaxirasi")
+ax[1].plot(tt, -np.array([x["dV_qatlam"] for x in b]) / dt / Qr * 100, label="aquifer storage" if EN else "suvli qatlamlar zaxirasi")
 ax[1].plot(tt, np.array([x["chegara"] + x["W"] - x["E"] for x in b]) / dt / Qr * 100,
-           label="chegaralar va bug'lanish kamayishi")
-ax[1].set_xscale("log"); ax[1].set_xlabel(r"$t$, sut"); ax[1].set_ylabel("quduqlar sarfiga nisbatan, %")
-ax[1].legend(fontsize=7); ax[1].grid(alpha=.3, which="both"); ax[1].set_title("b) quduq suvining manbalari", fontsize=9)
-fig.tight_layout(); fig.savefig("tajribalar/t6_qalin_ajratuvchi.png", dpi=200, metadata={"Software": None})
+           label="boundaries and reduced evaporation" if EN else "chegaralar va bug'lanish kamayishi")
+ax[1].set_xscale("log"); ax[1].set_xlabel(r"$t$, d" if EN else r"$t$, sut"); ax[1].set_ylabel("share of pumping rate, %" if EN else "quduqlar sarfiga nisbatan, %")
+ax[1].legend(fontsize=7); ax[1].grid(alpha=.3, which="both"); ax[1].set_title("(b) sources of pumped water" if EN else "b) quduq suvining manbalari", fontsize=9)
+fig.tight_layout(); fig.savefig("tajribalar/t6_qalin_ajratuvchi_en.png" if EN else "tajribalar/t6_qalin_ajratuvchi.png", dpi=200, metadata={"Software": None})
