@@ -3,7 +3,7 @@
 Javokhir Erkinov¹*, Normakhmad Ravshanov²
 
 ¹ Samarkand State University named after Sharof Rashidov, Samarkand, Uzbekistan. ORCID 0009-0007-6580-7402
-² Digital Technologies and Artificial Intelligence Development Research Institute, Tashkent, Uzbekistan [affiliation as printed in Hydrology 2026, 13, 276; to be confirmed]
+² Digital Technologies and Artificial Intelligence Development Research Institute, 17A Buz-2, Tashkent 100125, Uzbekistan. ravshanzade-09@mail.ru. ORCID 0000-0001-6965-7156 [ORCID to be checked on orcid.org]
 
 \* Corresponding author: erkinovj110@gmail.com
 

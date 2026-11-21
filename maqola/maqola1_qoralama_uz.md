@@ -3,7 +3,7 @@
 Erkinov Javohir¹*, Ravshanov Normaxmad²
 
 ¹ Sharof Rashidov nomidagi Samarqand davlat universiteti, Samarqand, O‘zbekiston. ORCID 0009-0007-6580-7402
-² Raqamli texnologiyalar va sun’iy intellektni rivojlantirish ilmiy-tadqiqot instituti, Toshkent, O‘zbekiston [Hydrology 2026, 13, 276 dagi yozuv bo‘yicha; aniqlashtiriladi]
+² Raqamli texnologiyalar va sun’iy intellektni rivojlantirish ilmiy-tadqiqot instituti, Buz-2, 17A, Toshkent, 100125, O‘zbekiston. ravshanzade-09@mail.ru. ORCID 0000-0001-6965-7156 [ORCID orcid.org da tekshiriladi]
 
 \* Muallif bilan aloqa: erkinovj110@gmail.com
 
