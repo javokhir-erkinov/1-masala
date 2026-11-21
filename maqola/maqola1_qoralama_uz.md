@@ -1,6 +1,6 @@
 # Ajratuvchi qatlamlarning elastik suv berishi, suv o‘tkazuvchanlikning koordinatalarga bog‘liqligi va bosimsiz yuqori qatlam hisobga olingan uch qatlamli tizimda yer osti suvlari filtratsiyasining massani saqlovchi sonli modeli
 
-Ravshanov Normaxmad¹, Erkinov Javohir²*
+Ravshanov Normaxmad¹, Erkinov Javokhir²*
 
 ¹ Raqamli texnologiyalar va sun’iy intellektni rivojlantirish ilmiy-tadqiqot instituti, Buz-2, 17A, Toshkent, 100125, O‘zbekiston. ravshanzade-09@mail.ru. ORCID 0000-0001-6965-7156
 ² Sharof Rashidov nomidagi Samarqand davlat universiteti, Samarqand, O‘zbekiston. ORCID 0009-0007-6580-7402
