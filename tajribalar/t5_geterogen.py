@@ -69,14 +69,15 @@ for sig in (True, False):
 json.dump(nat, open("tajribalar/t5_geterogen.json", "w"), indent=1)
 
 fig, ax = plt.subplots(2, 2, figsize=(10, 5.6), sharex=True, sharey=True)
+NOM = {"sigimli_geterogen": "geterogen, ajratuvchining elastik suv berishi bilan", "sigimsiz_geterogen": "geterogen, ajratuvchining elastik suv berishisiz", "sigimli_birjinsli": "bir jinsli, ajratuvchining elastik suv berishi bilan", "sigimsiz_birjinsli": "bir jinsli, ajratuvchining elastik suv berishisiz"}
 for a, key in zip(ax.ravel(), ["sigimli_geterogen", "sigimsiz_geterogen", "sigimli_birjinsli", "sigimsiz_birjinsli"]):
     r = R[key]
     s = r["H0"][1] - r["H"][1]
     cs = a.contourf(g.xc, g.yc, s, levels=np.linspace(0, max(R[k]["H0"][1].max() - 0 for k in R) * 0 + 4.0, 17), cmap="viridis_r", extend="max")
     a.contour(g.xc, g.yc, r["H0"][0] - r["H"][0], levels=[0.1, 0.25, 0.5, 1.0], colors="w", linewidths=.7)
-    a.set_title(key.replace("_", ", ").replace("sigim", "sig'im"), fontsize=9)
+    a.set_title(NOM.get(key, key), fontsize=9)
     a.set_aspect("equal")
-for a in ax[1]: a.set_xlabel("x, m")
-for a in ax[:, 0]: a.set_ylabel("y, m")
+for a in ax[1]: a.set_xlabel(r"$x$, m")
+for a in ax[:, 0]: a.set_ylabel(r"$y$, m")
 fig.colorbar(cs, ax=ax, label="2-qatlamda napor pasayishi, m (oq: 1-qatlam)")
 fig.savefig("tajribalar/t5_geterogen.png", dpi=200, metadata={"Software": None})

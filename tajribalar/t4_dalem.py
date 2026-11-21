@@ -60,7 +60,7 @@ for r, mk in zip((30, 60, 90, 120), "osd^"):
         Sp = 10 ** p[3] if len(p) > 3 else 0.0
         s = etalon.kop_qatlam(r, tt, [BIG, KD], [BIG, S], [1 / c], [1.0], [Sp], [0, Q])[:, 1]
         ax.semilogx(tt, s, ls, color="C0" if nom == "sigimli" else "C3", lw=1)
-ax.plot([], [], "-", color="C0", label="sig'imli ajratuvchi")
-ax.plot([], [], "--", color="C3", label="sig'imsiz ajratuvchi")
-ax.set_xlabel("t, sut"); ax.set_ylabel("s, m"); ax.legend(fontsize=8); ax.grid(alpha=.3, which="both")
+ax.plot([], [], "-", color="C0", label="ajratuvchining elastik suv berishi bilan")
+ax.plot([], [], "--", color="C3", label="ajratuvchining elastik suv berishisiz")
+ax.set_xlabel(r"$t$, sut"); ax.set_ylabel(r"$s$, m"); ax.legend(fontsize=8); ax.grid(alpha=.3, which="both")
 fig.tight_layout(); fig.savefig("tajribalar/t4_dalem.png", dpi=200, metadata={"Software": None})
