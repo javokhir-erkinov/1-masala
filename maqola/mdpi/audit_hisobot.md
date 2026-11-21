@@ -8,7 +8,7 @@ Tekshirilgan fayllar: `maqola1_hydrology.md/.docx` (inglizcha), `maqola1_hydrolo
 
 | Topilgan | Tuzatish |
 |---|---|
-| Karimov va boshq. 2025 (SPIE): Crossref'da maqola raqami "136620J" emas, sahifa "25", konferensiya nomi DTIEE 2025 | Ro‘yxatdagi yozuv Crossref ma'lumotiga keltirildi |
+| Karimov va boshq. 2025 (SPIE): yozuvda konferensiya nomi yo‘q edi; Crossref sahifa sifatida "25" ni beradi, maqolaning o‘zida esa SPIE raqami 136620J | Konferensiya nomi (DTIEE 2025) qo‘shildi, maqoladagi 136620J raqami qoldirildi |
 | Leake va boshq. 1994: sarlavhada vergul tushib qolgan ("Finite-Difference, Ground-Water") | Tuzatildi |
 | Theis 1935 va Hantush–Jacob 1955: Crossref yozuvida muallif maydoni yo‘q | Mualliflar klassik ishlardan ma'lum, o‘zgarishsiz qoldi |
 | Matnda De Ridder (1961) va Veling–Maas (2009) bor, ro‘yxatda yo‘q edi | Ikki jumla matndan olib tashlandi |
