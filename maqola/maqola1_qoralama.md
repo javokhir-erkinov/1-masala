@@ -15,7 +15,7 @@ In a three-aquifer system the two aquitards hold water in elastic storage. Durin
 
 The model is discretised with cell-centred finite volumes and backward Euler time stepping. The aquitard unknowns of each column are eliminated by a vectorised tridiagonal solve. This leaves a symmetric 2×2 exchange matrix per column and one sparse symmetric system for the aquifer heads. We prove that the scheme conserves mass exactly, that it is unconditionally stable in an energy norm and that it satisfies a discrete maximum principle.
 
-The code reproduces the Theis and Hantush–Jacob solutions and a Laplace-domain multilayer solution with aquitard storage within 0.7%. It agrees with MODFLOW 6 to 4×10⁻⁹ m on the same grid. The aquitard discretisation converges at second order, and the mass-balance residual stays below 10⁻¹¹.
+The code reproduces the Theis and Hantush–Jacob solutions and a Laplace-domain multilayer solution with aquitard storage within 0.7%. It agrees with MODFLOW 6 to 4×10⁻⁹ m on the same grid. The scheme converges at second order in space and first order in time, and the mass-balance residual stays below 10⁻¹¹.
 
 Numerical experiments show that the time scale t_c = b′S′/K′ alone does not decide when aquitard storage can be neglected. The ratio ε of aquitard to aquifer storage matters as well: for ε ≳ 1 the difference between the two models persists for t ≫ t_c. In a heterogeneous field with thick clay aquitards, storage changes early drawdown in the pumped aquifer by 18–30%. One year later it still reduces the water-table decline in the unconfined aquifer by 14%. A storage-free model therefore overestimates the water-table response that controls evaporation and salinisation.
 
@@ -241,7 +241,20 @@ Table 1. Aquitard column (K′ = 10⁻² m/d, b′ = 2 m, S′_s = 10⁻² m⁻�
 
 The slight drop at M = 32 comes from the time-discretisation error, which at τ = 10⁻⁴ d is of the same size.
 
-Under time refinement the order is 1. For a heterogeneous, irregularly shaped problem with all processes active, the mass-balance residual is below 10⁻¹⁰ per step. As S′_s → 0 the solution converges to the storage-free model (difference < 10⁻⁸ m).
+Table 2 checks the coupled three-aquifer scheme as a whole (`tajribalar/t8_yaqinlashish.py`). The domain is 1000 × 1000 m with no-flow boundaries. K₁ and K₂ vary smoothly in x and y, as does K′ of aquitard 1. Both aquitards have storage (b′ = 4 m, S′_s = 2×10⁻³ m⁻¹). The initial head is a Gaussian mound of 1 m in aquifer 1, and the solution is compared at t = 5 d. In space, the cell size h and the sublayer thickness δ are halved together, and errors are root-mean-square differences of the three aquifer heads from cell averages of a 160 × 160, M = 32 solution. In time, τ is halved on a 40 × 40, M = 8 grid against τ = 1/256 d.
+
+Table 2. Grid and time-step convergence of the coupled scheme, root-mean-square head error at t = 5 d.
+
+| n × n, M | error (m) | order | τ (d) | error (m) | order |
+|---|---|---|---|---|---|
+| 20 × 20, 4 | 1.49×10⁻⁴ | | 0.5 | 8.0×10⁻⁴ | |
+| 40 × 40, 8 | 3.55×10⁻⁵ | 2.07 | 0.25 | 3.95×10⁻⁴ | 1.02 |
+| 80 × 80, 16 | 7.10×10⁻⁶ | 2.32 | 0.125 | 1.94×10⁻⁴ | 1.03 |
+| | | | 0.0625 | 9.39×10⁻⁵ | 1.05 |
+
+The orders confirm O(h² + δ² + τ). The value 2.32 on the finest grid is slightly inflated because that grid is only one refinement away from the reference.
+
+Under time refinement of a single aquitard column the order is also 1. For a heterogeneous, irregularly shaped problem with all processes active, the mass-balance residual is below 10⁻¹⁰ per step. As S′_s → 0 the solution converges to the storage-free model (difference < 10⁻⁸ m).
 
 ### Dalem pumping test
 
@@ -298,7 +311,7 @@ The model has limits that a user should know. Aquifers 2 and 3 are assumed to st
 
 1. A three-aquifer model with a diffusion equation in each aquitard, K(x,y), an unconfined top layer, recharge, evaporation and wells was formulated and solved by a finite-volume scheme that eliminates each aquitard column exactly.
 2. The scheme conserves mass exactly, is unconditionally stable in the storage-weighted norm and satisfies a discrete maximum principle. The condensed exchange matrix is symmetric and positive semi-definite.
-3. The code reproduces the Theis, Hantush–Jacob and Laplace-domain multilayer solutions within 0.7%. It reproduces MODFLOW 6 to 4×10⁻⁹ m and converges at second order in the aquitard.
+3. The code reproduces the Theis, Hantush–Jacob and Laplace-domain multilayer solutions within 0.7%. It reproduces MODFLOW 6 to 4×10⁻⁹ m and converges at second order in space (aquifer grid and aquitard sublayers) and first order in time.
 4. Whether aquitard storage can be neglected depends on t/t_c and on ε = S′/ΣS. For ε ≳ 1 the effect persists well beyond t_c.
 5. In a heterogeneous field with thick clay aquitards, the storage-free model overestimates the water-table decline in the unconfined aquifer by about 14% after one year.
 
